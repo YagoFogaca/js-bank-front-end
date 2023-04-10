@@ -1,3 +1,9 @@
+import { GlobalStyle } from './global.style';
+
 export function App() {
-    return <div></div>;
+    return (
+        <>
+            <GlobalStyle />
+        </>
+    );
 }
