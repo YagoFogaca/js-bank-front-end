@@ -27,4 +27,9 @@ export const Input = styled.input`
     &::-webkit-datetime-edit-text {
         color: transparent !important;
     }
+
+    &:focus::-webkit-datetime-edit-fields-wrapper,
+    &:valid::-webkit-datetime-edit-fields-wrapper {
+        color: #000 !important;
+    }
 `;
