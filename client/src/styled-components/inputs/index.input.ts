@@ -28,8 +28,17 @@ export const Input = styled.input`
         color: transparent !important;
     }
 
+    &::-webkit-calendar-picker-indicator {
+        display: none;
+    }
+
     &:focus::-webkit-datetime-edit-fields-wrapper,
     &:valid::-webkit-datetime-edit-fields-wrapper {
         color: #000 !important;
+    }
+
+    &:focus::-webkit-calendar-picker-indicator,
+    &:valid::-webkit-calendar-picker-indicator {
+        display: block;
     }
 `;
