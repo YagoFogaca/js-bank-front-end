@@ -1,4 +1,1 @@
-export function PageCpf(){
-
-    
-}
+export function PageCpf() {}
