@@ -31,5 +31,5 @@ export const ImgLogo = styled.img`
 `;
 
 export const DivForm = styled.div`
-    width: 100%;
+    width: 70%;
 `;

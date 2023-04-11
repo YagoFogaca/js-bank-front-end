@@ -22,4 +22,9 @@ export const Input = styled.input`
         color: #000;
         font-size: 12px;
     }
+
+    &::-webkit-datetime-edit-fields-wrapper,
+    &::-webkit-datetime-edit-text {
+        color: transparent !important;
+    }
 `;
