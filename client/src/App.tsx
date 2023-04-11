@@ -1,14 +1,16 @@
-import { CardRegistration } from './components/card-registration/index.card-registration';
 import { GlobalStyle } from './global.style';
-// import { BoxBtns, Btn } from './styled-components/btns/index.btn';
-// import { BoxInput, Input } from './styled-components/inputs/index.input';
-// import { Label } from './styled-components/label/index.label';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { PageCpf } from './pages/page-cpf';
 
 export function App() {
     return (
         <>
             <GlobalStyle />
-            <CardRegistration></CardRegistration>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<PageCpf />} />
+                </Routes>
+            </BrowserRouter>
         </>
     );
 }
