@@ -1,9 +1,5 @@
-import { ReactNode } from 'react';
+import { PorpsCardRegistration } from '../../utils/types/index.props';
 import * as C from './style.card-registration';
-
-type PorpsCardRegistration = {
-    children: ReactNode;
-};
 
 export function CardRegistration({ children }: PorpsCardRegistration) {
     return (
