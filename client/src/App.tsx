@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PageCpf } from './pages/page-cpf';
 import { PagePersonalInfo } from './pages/personal-info';
 import { PageEmail } from './pages/page-email';
+import { PageResidencia } from './pages/page-residencia';
 
 export function App() {
     return (
@@ -18,6 +19,10 @@ export function App() {
                             element={<PagePersonalInfo />}
                         />
                         <Route path="/email" element={<PageEmail />} />
+                        <Route
+                            path="/residencia"
+                            element={<PageResidencia />}
+                        />
                     </Routes>
                 </ContextProvider>
             </BrowserRouter>
