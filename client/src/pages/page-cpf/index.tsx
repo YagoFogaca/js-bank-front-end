@@ -5,6 +5,7 @@ import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
 import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import { UserContext } from '../../contexts/user.context';
+import { SpanError } from '../../styled-components/span/index.span';
 
 export function PageCpf() {
     const [disabledBtn, setDisabledBtn] = useState(true);
@@ -23,9 +24,16 @@ export function PageCpf() {
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         const newDocumentNumber = event.target.value;
-        setDisabledBtn(
-            /[^0-9]/.test(newDocumentNumber) || newDocumentNumber.length < 11,
-        );
+
+        if (
+            /[^0-9]/.test(newDocumentNumber) ||
+            newDocumentNumber.length !== 11
+        ) {
+            setValidateCpf(true);
+        } else {
+            setValidateCpf(false);
+            setDisabledBtn(false);
+        }
     };
 
     return (
@@ -39,6 +47,9 @@ export function PageCpf() {
                             onChange={handleDocumentNumberChange}
                         />
                         <Label>Cpf</Label>
+                        <SpanError visible={validateCpf}>
+                            O CPF é invalido
+                        </SpanError>
                     </BoxInput>
                     <BoxBtns>
                         <Btn disabled={disabledBtn}>Seguir</Btn>

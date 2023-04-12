@@ -6,6 +6,7 @@ export const BoxBtns = styled.div`
 
 export const Btn = styled.button`
     padding: 8px 6px;
+    margin: 20px 0;
     width: 100%;
     background-color: #004af7;
     color: #fffcfc;
