@@ -3,7 +3,7 @@ import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
 import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 
-export function PagePersonalInfo() {
+export function PageInformacoes() {
     const OnSubmitFormPersonalInfo = (
         event: React.FormEvent<HTMLFormElement>,
     ) => {

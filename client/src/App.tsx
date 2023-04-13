@@ -2,9 +2,10 @@ import { GlobalStyle } from './global.style';
 import { ContextProvider } from './contexts/user.context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PageCpf } from './pages/page-cpf';
-import { PagePersonalInfo } from './pages/personal-info';
+import { PageInformacoes } from './pages/page-informacoes';
 import { PageEmail } from './pages/page-email';
 import { PageResidencia } from './pages/page-residencia';
+import { PageFotos } from './pages/page-fotos';
 
 export function App() {
     return (
@@ -16,12 +17,16 @@ export function App() {
                         <Route path="/" element={<PageCpf />} />
                         <Route
                             path="/personal-info"
-                            element={<PagePersonalInfo />}
+                            element={<PageInformacoes />}
                         />
                         <Route path="/email" element={<PageEmail />} />
                         <Route
                             path="/residencia"
                             element={<PageResidencia />}
+                        />
+                        <Route
+                            path="/fotos"
+                            element={<PageFotos />}
                         />
                     </Routes>
                 </ContextProvider>

@@ -9,7 +9,7 @@ export function PageResidencia() {
             <CardRegistration>
                 <BoxInput>
                     <Input required id="cep" type="text" />
-                    <Label>Cep*</Label>
+                    <Label>CEP*</Label>
                 </BoxInput>
 
                 <BoxInput>
@@ -18,8 +18,8 @@ export function PageResidencia() {
                 </BoxInput>
 
                 <BoxInput>
-                    <Input required id="numero_recidemcia" type="text" />
-                    <Label>Nº residencial*</Label>
+                    <Input required id="numero_residencia" type="text" />
+                    <Label>Número da residência*</Label>
                 </BoxInput>
 
                 <BoxInput>

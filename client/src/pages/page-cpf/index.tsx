@@ -17,7 +17,7 @@ export function PageCpf() {
         event.preventDefault();
 
         setUser({ ...user, documentNumber: event.currentTarget.cpf.value });
-        navigate('/personal-info');
+        navigate('/informacoes');
     };
 
     const handleDocumentNumberChange = (
@@ -46,7 +46,7 @@ export function PageCpf() {
                             id="cpf"
                             onChange={handleDocumentNumberChange}
                         />
-                        <Label>Cpf</Label>
+                        <Label>CPF</Label>
                         <SpanError visible={validateCpf}>
                             O CPF é invalido
                         </SpanError>
