@@ -7,3 +7,7 @@ export type PorpsCardRegistration = {
 export type PropsSpanError = {
     visible?: boolean;
 };
+
+export type PropsVarianteButton = {
+    color?: string;
+};
