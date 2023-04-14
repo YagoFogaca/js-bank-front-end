@@ -6,11 +6,16 @@ import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import { UserContext } from '../../contexts/user.context';
 import { SpanError } from '../../styled-components/span/index.span';
+import { ValidateDocumentNumber } from '../../utils/types/index.props';
 import { Api } from '../../utils/api/api';
 
 export function PageCpf() {
     const [disabledBtn, setDisabledBtn] = useState(true);
-    const [validateDocumentNumber, setValidateDocumentNumber] = useState(false);
+    const [validateDocumentNumber, setValidateDocumentNumber] =
+        useState<ValidateDocumentNumber>({
+            message: '',
+            valid: false,
+        });
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -25,7 +30,10 @@ export function PageCpf() {
             setUser({ ...user, documentNumber });
             navigate('/informacoes-pessoais');
         } catch (error) {
-            // Mensagem de CPF já existente no banco de dados
+            setValidateDocumentNumber({
+                message: 'CPF já cadastrado!',
+                valid: true,
+            });
         }
     };
 
@@ -38,9 +46,15 @@ export function PageCpf() {
             /[^0-9]/.test(newDocumentNumber) ||
             newDocumentNumber.length !== 11
         ) {
-            setValidateDocumentNumber(true);
+            setValidateDocumentNumber({
+                message: 'CPF inválido!',
+                valid: true,
+            });
         } else {
-            setValidateDocumentNumber(false);
+            setValidateDocumentNumber({
+                message: '',
+                valid: false,
+            });
             setDisabledBtn(false);
         }
     };
@@ -48,9 +62,10 @@ export function PageCpf() {
     return (
         <>
             <CardRegistration>
-                <h2>Abra sua conta</h2>
-                <br></br>
                 <form onSubmit={handleSubmit}>
+                    <SpanError visible={validateDocumentNumber.valid}>
+                        {validateDocumentNumber.message}
+                    </SpanError>
                     <BoxInput>
                         <Input
                             required
@@ -58,9 +73,6 @@ export function PageCpf() {
                             onChange={handleDocumentNumberChange}
                         />
                         <Label>CPF</Label>
-                        <SpanError visible={validateDocumentNumber}>
-                            CPF inválido!
-                        </SpanError>
                     </BoxInput>
                     <BoxBtns>
                         <Btn disabled={disabledBtn}>Seguir</Btn>

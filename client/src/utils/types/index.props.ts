@@ -11,3 +11,8 @@ export type PropsSpanError = {
 export type PropsVarianteButton = {
     color?: string;
 };
+
+export type ValidateDocumentNumber = {
+    valid: boolean;
+    message: string;
+};
