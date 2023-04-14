@@ -5,7 +5,7 @@ import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
 import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import { UserContext } from '../../contexts/user.context';
-import { SpanError } from '../../styled-components/span/index.span';
+import { VarianteSpanError } from '../../styled-components/span/index.span';
 import { ValidateInfos } from '../../utils/types/index.props';
 import { Api } from '../../utils/api/api';
 
@@ -63,9 +63,9 @@ export function PageCpf() {
         <>
             <CardRegistration>
                 <form onSubmit={handleSubmit}>
-                    <SpanError visible={validateDocumentNumber.valid}>
+                    <VarianteSpanError visible={validateDocumentNumber.valid}>
                         {validateDocumentNumber.message}
-                    </SpanError>
+                    </VarianteSpanError>
                     <BoxInput>
                         <Input
                             required
