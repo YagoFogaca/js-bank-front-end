@@ -5,7 +5,7 @@ import { PageCpf } from './pages/page-cpf';
 import { PageInformacoes } from './pages/page-informacoes';
 import { PageEmail } from './pages/page-email';
 import { PageResidencia } from './pages/page-residencia';
-import { PageWebCam } from './pages/page-webcam';
+import { PageFoto } from './pages/page-foto';
 
 export function App() {
     return (
@@ -21,10 +21,10 @@ export function App() {
                         />
                         <Route path="/email" element={<PageEmail />} />
                         <Route
-                            path="/residencia"
+                            path="/informacoes-residenciais"
                             element={<PageResidencia />}
                         />
-                        <Route path="/fotos" element={<PageWebCam />} />
+                        <Route path="/foto" element={<PageFoto />} />
                     </Routes>
                 </ContextProvider>
             </BrowserRouter>

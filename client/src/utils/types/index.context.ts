@@ -2,7 +2,7 @@ export type UserContextType = {
     emailAddress: string;
     accessPassword: string;
     documentNumber: string;
-    gullName: string;
+    fullName: string;
     birthDate: string;
     phoneNumber: string;
     zipCode: string;

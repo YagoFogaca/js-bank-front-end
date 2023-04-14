@@ -8,7 +8,7 @@ const initialUser = {
     emailAddress: '',
     accessPassword: '',
     documentNumber: '',
-    gullName: '',
+    fullName: '',
     birthDate: '',
     phoneNumber: '',
     zipCode: '',
