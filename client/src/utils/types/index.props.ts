@@ -12,7 +12,7 @@ export type PropsVarianteButton = {
     color?: string;
 };
 
-export type ValidateDocumentNumber = {
+export type ValidateInfos = {
     valid: boolean;
     message: string;
 };

@@ -6,13 +6,13 @@ import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import { UserContext } from '../../contexts/user.context';
 import { SpanError } from '../../styled-components/span/index.span';
-import { ValidateDocumentNumber } from '../../utils/types/index.props';
+import { ValidateInfos } from '../../utils/types/index.props';
 import { Api } from '../../utils/api/api';
 
 export function PageCpf() {
     const [disabledBtn, setDisabledBtn] = useState(true);
     const [validateDocumentNumber, setValidateDocumentNumber] =
-        useState<ValidateDocumentNumber>({
+        useState<ValidateInfos>({
             message: '',
             valid: false,
         });
