@@ -6,7 +6,7 @@ import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import { UserContext } from '../../contexts/user.context';
 import { SpanError } from '../../styled-components/span/index.span';
-import { Api } from '../../utils/types/api/api';
+import { Api } from '../../utils/api/api';
 
 export function PageCpf() {
     const [disabledBtn, setDisabledBtn] = useState(true);

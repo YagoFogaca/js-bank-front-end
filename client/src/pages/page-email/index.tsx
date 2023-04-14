@@ -3,7 +3,7 @@ import { CardRegistration } from '../../components/card-registration/index.card-
 import * as C from '../../styled-components/btns/index.btn';
 import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
-import { Api } from '../../utils/types/api/api';
+import { Api } from '../../utils/api/api';
 import { UserContext } from '../../contexts/user.context';
 import { useNavigate } from 'react-router-dom';
 
@@ -54,9 +54,7 @@ export function PageEmail() {
                         </BoxInput>
 
                         <C.BoxBtns>
-                            <C.Btn>
-                                Seguir
-                            </C.Btn>
+                            <C.Btn>Seguir</C.Btn>
                         </C.BoxBtns>
                     </form>
                 </CardRegistration>
@@ -64,8 +62,8 @@ export function PageEmail() {
                 <CardRegistration>
                     <form onSubmit={verifyEmailCode}>
                         <p>
-                            Enviamos um código de validação para o e-mail informado.
-                            Ele tem duração de 15 minutos.
+                            Enviamos um código de validação para o e-mail
+                            informado. Ele tem duração de 15 minutos.
                         </p>
                         <br></br>
                         <BoxInput>
