@@ -12,15 +12,13 @@ export function PageEmail() {
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
-    const sendEmailCode = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const emailAddress = event.currentTarget.emailAddress.value;
 
         try {
-            await Api.findEmailAddress(emailAddress);
             setUser({ ...user, emailAddress });
-
             await Api.sendEmailCode(emailAddress);
             setCodeSent(true);
         } catch (error) {
@@ -43,13 +41,32 @@ export function PageEmail() {
         }
     };
 
+    const handleEmailCodeChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        if (
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+                event.currentTarget.value,
+            )
+        ) {
+            console.log('É valido: ', event.currentTarget.value);
+        } else {
+            console.log('Invalido: ', event.currentTarget.value);
+        }
+    };
+
     return (
         <>
             {!codeSent ? (
                 <CardRegistration>
-                    <form onSubmit={sendEmailCode}>
+                    <form onSubmit={handleSubmit}>
                         <BoxInput>
-                            <Input required id="emailAddress" type="email" />
+                            <Input
+                                required
+                                id="emailAddress"
+                                type="email"
+                                onChange={handleEmailCodeChange}
+                            />
                             <Label>E-mail</Label>
                         </BoxInput>
 
