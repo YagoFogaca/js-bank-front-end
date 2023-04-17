@@ -40,11 +40,12 @@ export function PageResidencia() {
         const complement = event.currentTarget.complement.value;
         const city = event.currentTarget.city.value;
         const state = event.currentTarget.state.value;
+        const zipCode = event.currentTarget.zipCode.value;
 
-        const homeAddress = `${street}, ${number}, ${complement}, ${city}, ${state}`;
-
-        setUser({ ...user, homeAddress });
-
+        const homeAddress = `${city}, ${state}, ${street}, ${number} ${
+            complement ? ',' + complement : ''
+        }`;
+        setUser({ ...user, homeAddress, zipCode });
         navigate('/foto');
     };
 

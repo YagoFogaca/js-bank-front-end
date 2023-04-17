@@ -26,6 +26,8 @@ export function PageFoto() {
         }
     };
 
+    console.log(user);
+
     return (
         <>
             {showConfirm ? (
