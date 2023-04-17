@@ -1,87 +1,56 @@
 import { useContext, useState } from 'react';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
 import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
-import Camera from 'react-html5-camera-photo';
-import { Img } from '../../components/webcam/style.webcam';
-import * as C from '../../styled-components/btns/index.btn';
-import '../../components/webcam/style.fix.css';
-import 'react-html5-camera-photo/build/css/index.css';
+import { Text } from '../../styled-components/text-information/index.text';
 import { UserContext } from '../../contexts/user.context';
 import { useNavigate } from 'react-router-dom';
+import { WebCam } from '../../components/webcam/index.webcam';
 import { Api } from '../../utils/api/api';
 
 export function PageFoto() {
     const [showConfirm, setShowConfirm] = useState(true);
-    const [takedPhoto, setTakedPhoto] = useState(false);
-    const [photo, setPhoto] = useState<string>();
+    const [renderImg, setRenderImg] = useState(false);
+    const [imgUrl, setImgUrl] = useState('');
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
-    const faceRegistration = async () => {
+    const handleSubmit = async () => {
         try {
             // await Api.faceRegistration({ documentNumber: user.documentNumber, imageBase64: photo });
             // Redirecionar o usuário para a pagina seguinte
+            navigate('/teste');
         } catch (error) {
             // Mensagem de erro ao registrar o rosto
         }
     };
 
-    console.log(user);
-
     return (
-        <>
+        <CardRegistration>
             {showConfirm ? (
-                <CardRegistration>
-                    <BoxBtns>
-                        <p>
-                            Vamos pedir algumas fotos para você, as fotos
-                            necessárias são de um documento com foto, seja RG ou
-                            CNH e do seu rosto.
-                        </p>
-                        <Btn
-                            onClick={() => {
-                                setShowConfirm(false);
-                            }}
-                        >
-                            Seguir
-                        </Btn>
-                    </BoxBtns>
-                </CardRegistration>
+                <>
+                    <Text>
+                        Vamos pedir algumas fotos para você, as fotos
+                        necessárias são de um documento com foto, seja RG ou CNH
+                        e do seu rosto.
+                    </Text>
+                    <Btn
+                        onClick={() => {
+                            setShowConfirm(false);
+                        }}
+                    >
+                        Seguir
+                    </Btn>
+                </>
             ) : (
-                <CardRegistration>
-                    <p>Tire uma foto do seu rosto:</p>
-                    {takedPhoto ? (
-                        <>
-                            <Img src={photo} />
-                            <C.VarianteBoxBtns>
-                                <C.VarianteButton
-                                    color="true"
-                                    onClick={() => setTakedPhoto(false)}
-                                >
-                                    Retirar foto
-                                </C.VarianteButton>
-                                <C.VarianteButton
-                                    onClick={() => {
-                                        faceRegistration();
-                                    }}
-                                >
-                                    Seguir
-                                </C.VarianteButton>
-                            </C.VarianteBoxBtns>
-                        </>
-                    ) : (
-                        <>
-                            <Camera
-                                imageType={'png'}
-                                onTakePhoto={imageBase64 => {
-                                    setPhoto(imageBase64);
-                                    setTakedPhoto(true);
-                                }}
-                            />
-                        </>
-                    )}
-                </CardRegistration>
+                <WebCam
+                    text="Certifique-se que a foto esteja adequada"
+                    renderImg={renderImg}
+                    imgUrl={imgUrl}
+                    setRenderImg={setRenderImg}
+                    setImgUrl={setImgUrl}
+                    handleSubmit={handleSubmit}
+                />
             )}
-        </>
+        </CardRegistration>
     );
 }

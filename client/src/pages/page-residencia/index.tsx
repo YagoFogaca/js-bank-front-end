@@ -42,8 +42,8 @@ export function PageResidencia() {
         const state = event.currentTarget.state.value;
         const zipCode = event.currentTarget.zipCode.value;
 
-        const homeAddress = `${city}, ${state}, ${street}, ${number} ${
-            complement ? ',' + complement : ''
+        const homeAddress = `${city}, ${state}, ${street}, ${number}${
+            complement ? ', ' + complement : ''
         }`;
         setUser({ ...user, homeAddress, zipCode });
         navigate('/foto');

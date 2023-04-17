@@ -24,3 +24,12 @@ export type ResViaCep = {
     localidade: string;
     uf: string;
 };
+
+export type WebCamProps = {
+    text: string;
+    renderImg: boolean;
+    imgUrl: string;
+    setImgUrl: (dataUri: string) => void;
+    setRenderImg: (img: boolean) => void;
+    handleSubmit: () => void;
+};
