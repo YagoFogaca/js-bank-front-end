@@ -16,3 +16,11 @@ export type ValidateInfos = {
     valid: boolean;
     message: string;
 };
+
+export type ResViaCep = {
+    cep: string;
+    logradouro: string;
+    bairro: string;
+    localidade: string;
+    uf: string;
+};

@@ -1,45 +1,38 @@
 import { useContext, useState } from 'react';
-import { CardRegistration } from '../../components/card-registration/index.card-registration';
-import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
-import { BoxInput, Input } from '../../styled-components/inputs/index.input';
-import { Label } from '../../styled-components/label/index.label';
-import { Api } from '../../utils/api/api';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
-
-type addressDataType = {
-    cep: string;
-    logradouro: string;
-    bairro: string;
-    localidade: string;
-    uf: string;
-};
+import { ViaCep } from '../../utils/via-cep';
+import { ResViaCep } from '../../utils/types/index.props';
+import { CardRegistration } from '../../components/card-registration/index.card-registration';
+import { Text } from '../../styled-components/text-information/index.text';
+import * as C from '../../styled-components/inputs/index.input';
+import { Label } from '../../styled-components/label/index.label';
+import { SpanError } from '../../styled-components/span/index.span';
+import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
 
 export function PageResidencia() {
-    const [addressData, setAddressData] = useState<addressDataType>();
+    const [addressData, setAddressData] = useState<ResViaCep>();
+    const [errorCep, setErrorCep] = useState(false);
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
-    const zipCodeChange = async (
+    const handleZipCodeChange = async (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
-        event.preventDefault();
-
         const zipCode = event.target.value;
 
         if (zipCode.length == 8) {
             try {
-                const addressData: addressDataType = await Api.findZipCode(
-                    zipCode,
-                );
+                const addressData: ResViaCep = await ViaCep(zipCode);
                 setAddressData(addressData);
             } catch (error) {
-                // Mensagem de CEP inválido
+                console.log(error);
+                setErrorCep(true);
             }
         }
     };
 
-    const setHomeAddress = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const street = event.currentTarget.street.value;
@@ -58,60 +51,68 @@ export function PageResidencia() {
     return (
         <>
             <CardRegistration>
-                <p>Insira suas informações residenciais</p>
-                <br></br>
-                <form>
-                    <BoxInput>
-                        <Input
+                <Text>Insira suas informações residenciais</Text>
+                <form onSubmit={handleSubmit}>
+                    <C.BoxInput>
+                        <C.Input
                             required
                             id="zipCode"
                             type="text"
-                            onChange={zipCodeChange}
+                            onChange={handleZipCodeChange}
                         />
                         <Label>CEP</Label>
-                    </BoxInput>
-                </form>
+                        <SpanError visible={errorCep}>
+                            CEP invalido ou não existe
+                        </SpanError>
+                    </C.BoxInput>
 
-                <form onSubmit={setHomeAddress}>
-                    <BoxInput>
-                        <Input
+                    <C.BoxInputs>
+                        <C.BoxInput>
+                            <C.VarianteInput
+                                required
+                                id="state"
+                                type="text"
+                                defaultValue={addressData?.uf}
+                            />
+                            <Label>Estado</Label>
+                        </C.BoxInput>
+
+                        <C.BoxInput>
+                            <C.VarianteInput
+                                required
+                                id="city"
+                                type="text"
+                                defaultValue={addressData?.localidade}
+                            />
+                            <Label>Cidade</Label>
+                        </C.BoxInput>
+                    </C.BoxInputs>
+
+                    <C.BoxInput>
+                        <C.Input
                             required
                             id="street"
                             type="text"
                             defaultValue={addressData?.logradouro}
                         />
                         <Label>Rua</Label>
-                    </BoxInput>
+                    </C.BoxInput>
 
-                    <BoxInput>
-                        <Input required id="number" type="text" />
-                        <Label>Número</Label>
-                    </BoxInput>
+                    <C.BoxInputs>
+                        <C.BoxInput>
+                            <C.VarianteInput required id="number" type="text" />
+                            <Label>Número</Label>
+                        </C.BoxInput>
 
-                    <BoxInput>
-                        <Input id="complement" type="text" />
-                        <Label>Complemento</Label>
-                    </BoxInput>
-
-                    <BoxInput>
-                        <Input
-                            required
-                            id="city"
-                            type="text"
-                            defaultValue={addressData?.localidade}
-                        />
-                        <Label>Cidade</Label>
-                    </BoxInput>
-
-                    <BoxInput>
-                        <Input
-                            required
-                            id="state"
-                            type="text"
-                            defaultValue={addressData?.uf}
-                        />
-                        <Label>Estado</Label>
-                    </BoxInput>
+                        <C.BoxInput>
+                            <C.VarianteInput
+                                required
+                                id="complement"
+                                type="text"
+                            />
+                            <Label>Complemento</Label>
+                        </C.BoxInput>
+                    </C.BoxInputs>
 
                     <BoxBtns>
                         <Btn>Seguir</Btn>

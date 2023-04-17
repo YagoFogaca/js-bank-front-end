@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const BoxInputs = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+`;
+
 export const BoxInput = styled.div`
     position: relative;
 `;
@@ -41,4 +48,8 @@ export const Input = styled.input`
     &:valid::-webkit-calendar-picker-indicator {
         display: block;
     }
+`;
+
+export const VarianteInput = styled(Input)`
+    width: 98%;
 `;
