@@ -105,11 +105,7 @@ export function PageResidencia() {
                         </C.BoxInput>
 
                         <C.BoxInput>
-                            <C.VarianteInput
-                                required
-                                id="complement"
-                                type="text"
-                            />
+                            <C.VarianteInput2 id="complement" type="text" />
                             <Label>Complemento</Label>
                         </C.BoxInput>
                     </C.BoxInputs>
