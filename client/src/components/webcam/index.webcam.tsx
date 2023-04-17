@@ -8,11 +8,11 @@ import 'react-html5-camera-photo/build/css/index.css';
 
 export function WebCam({
     text,
-    renderImg,
     imgUrl,
-    setRenderImg,
-    setImgUrl,
+    renderImg,
     handleSubmit,
+    setImgUrl,
+    setRenderImg,
 }: WebCamProps) {
     function handleTakePhoto(dataUri: string) {
         setImgUrl(dataUri);
