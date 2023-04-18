@@ -10,15 +10,17 @@ export class Api {
         return (await axios.get(`/documents/${documentNumber}`)).data;
     }
 
-    static async sendEmailCode(emailAddress: string) {
-        return (await axios.post(`/codes/send/`, emailAddress)).data;
+    static async sendEmailCode(data: { 
+        emailAddress: string 
+    }) {
+        return (await axios.post(`/codes/send`, data)).data;
     }
 
     static async verifyEmailCode(data: {
         emailAddress: string;
         emailCode: string;
     }) {
-        return (await axios.post(`/verify/codes`, data)).data;
+        return (await axios.post(`/codes/verify`, data)).data;
     }
 
     static async faceRegistration(data: {
