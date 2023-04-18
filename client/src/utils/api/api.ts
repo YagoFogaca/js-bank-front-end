@@ -2,7 +2,7 @@ import axios from 'axios';
 import { UserContextType } from '../types/index.context';
 
 axios.defaults.baseURL =
-    'http://jsbankbackend-env.eba-zpap2t6g.us-east-1.elasticbeanstalk.com';
+    'https://jsbank-bank-end.onrender.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export class Api {
