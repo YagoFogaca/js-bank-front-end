@@ -25,6 +25,7 @@ export function PageCpf() {
         const documentNumber = event.currentTarget.documentNumber.value;
 
         try {
+            await Api.findDocumentNumber(documentNumber);
             setUser({ ...user, documentNumber });
             navigate('/informacoes-pessoais');
         } catch (error) {
