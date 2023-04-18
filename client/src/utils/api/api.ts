@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { UserContextType } from '../types/index.context';
 
-axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
+axios.defaults.baseURL =
+    'http://jsbankbackend-env.eba-zpap2t6g.us-east-1.elasticbeanstalk.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export class Api {
