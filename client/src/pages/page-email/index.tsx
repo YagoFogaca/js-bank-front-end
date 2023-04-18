@@ -23,7 +23,7 @@ export function PageEmail() {
 
         const emailAddress = event.currentTarget.emailAddress.value;
         try {
-            // await Api.sendEmailCode(emailAddress);
+            await Api.sendEmailCode(emailAddress);
             setUser({ ...user, emailAddress });
             navigate('/verify-email');
         } catch (error) {
