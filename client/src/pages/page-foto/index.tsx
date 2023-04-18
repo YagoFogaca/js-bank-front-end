@@ -1,14 +1,18 @@
 import { useContext, useState } from 'react';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
-import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
+import { Btn } from '../../styled-components/btns/index.btn';
 import { Text } from '../../styled-components/text-information/index.text';
 import { UserContext } from '../../contexts/user.context';
 import { useNavigate } from 'react-router-dom';
 import { WebCam } from '../../components/webcam/index.webcam';
 import { Api } from '../../utils/api/api';
+import { ValidateInfos } from '../../utils/types/index.props';
 
 export function PageFoto() {
-    const [showConfirm, setShowConfirm] = useState(true);
+    const [showConfirm, setShowConfirm] = useState<ValidateInfos>({
+        message: '',
+        valid: true,
+    });
     const [renderImg, setRenderImg] = useState(false);
     const [imgUrl, setImgUrl] = useState('');
     const { user, setUser } = useContext(UserContext);
@@ -16,17 +20,25 @@ export function PageFoto() {
 
     const handleSubmit = async () => {
         try {
-            // await Api.faceRegistration({ documentNumber: user.documentNumber, imageBase64: photo });
+            await Api.faceRegistration({
+                documentNumber: user.documentNumber,
+                imageBase64: imgUrl,
+            });
             // Redirecionar o usuário para a pagina seguinte
-            navigate('/teste');
         } catch (error) {
-            // Mensagem de erro ao registrar o rosto
+            console.log(error);
+            setShowConfirm({
+                message:
+                    'Ocorreu um error ao processar a sua foto. Tire outra!',
+                valid: false,
+            });
+            setRenderImg(false);
         }
     };
 
     return (
         <CardRegistration>
-            {showConfirm ? (
+            {showConfirm.valid ? (
                 <>
                     <Text>
                         Vamos pedir algumas fotos para você, as fotos
@@ -35,7 +47,11 @@ export function PageFoto() {
                     </Text>
                     <Btn
                         onClick={() => {
-                            setShowConfirm(false);
+                            setShowConfirm({
+                                message:
+                                    'Certifique-se que a foto esteja adequada',
+                                valid: false,
+                            });
                         }}
                     >
                         Seguir
@@ -43,7 +59,7 @@ export function PageFoto() {
                 </>
             ) : (
                 <WebCam
-                    text="Certifique-se que a foto esteja adequada"
+                    text={showConfirm.message}
                     renderImg={renderImg}
                     imgUrl={imgUrl}
                     setRenderImg={setRenderImg}
