@@ -2,7 +2,7 @@ import { GlobalStyle } from './global.style';
 import { ContextProvider } from './contexts/user.context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PageCpf } from './pages/page-cpf';
-import { PageInformacoes } from './pages/page-informacoes';
+import { PagePersonalInformation } from './pages/page-informacoes';
 import { PageEmail } from './pages/page-email';
 import { PageVerifyEmail } from './pages/page-verify-email';
 import { PageResidencia } from './pages/page-residencia';
@@ -17,8 +17,8 @@ export function App() {
                     <Routes>
                         <Route path="/" element={<PageCpf />} />
                         <Route
-                            path="/informacoes-pessoais"
-                            element={<PageInformacoes />}
+                            path="/personal-information"
+                            element={<PagePersonalInformation />}
                         />
                         <Route path="/email" element={<PageEmail />} />
                         <Route

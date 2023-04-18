@@ -33,3 +33,10 @@ export type WebCamProps = {
     setRenderImg: (img: boolean) => void;
     handleSubmit: () => void;
 };
+
+export type PropsPersonalInformation = {
+    textFullName?: string;
+    textBirthDate?: string;
+    textPhoneNumber?: string;
+    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+};
