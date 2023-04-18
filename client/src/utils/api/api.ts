@@ -9,12 +9,8 @@ export class Api {
         return (await axios.get(`/documents/${documentNumber}`)).data;
     }
 
-    static async findEmailAddress(emailAddress: string) {
-        return (await axios.get(`/emails/${emailAddress}`)).data;
-    }
-
     static async sendEmailCode(emailAddress: string) {
-        return (await axios.get(`/send/codes/${emailAddress}`)).data;
+        return (await axios.post(`/codes/send/`, emailAddress)).data;
     }
 
     static async verifyEmailCode(data: {
@@ -22,11 +18,6 @@ export class Api {
         emailCode: string;
     }) {
         return (await axios.post(`/verify/codes`, data)).data;
-    }
-
-    static async findZipCode(zipCode: string) {
-        return (await axios.get(`https://viacep.com.br/ws/${zipCode}/json/`))
-            .data;
     }
 
     static async faceRegistration(data: {
