@@ -8,7 +8,7 @@ import { WebCam } from '../../components/webcam/index.webcam';
 import { Api } from '../../utils/api/api';
 import { ValidateInfos } from '../../utils/types/index.props';
 
-export function PageFoto() {
+export function PagePhoto() {
     const [showConfirm, setShowConfirm] = useState<ValidateInfos>({
         message: '',
         valid: true,

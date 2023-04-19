@@ -10,7 +10,7 @@ import { Label } from '../../styled-components/label/index.label';
 import { SpanError } from '../../styled-components/span/index.span';
 import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
 
-export function PageResidencia() {
+export function PageResidential() {
     const [addressData, setAddressData] = useState<ResViaCep>();
     const [errorCep, setErrorCep] = useState(false);
     const { user, setUser } = useContext(UserContext);
@@ -46,7 +46,7 @@ export function PageResidencia() {
             complement ? ', ' + complement : ''
         }`;
         setUser({ ...user, homeAddress, zipCode });
-        navigate('/foto');
+        navigate('/photo');
     };
 
     return (

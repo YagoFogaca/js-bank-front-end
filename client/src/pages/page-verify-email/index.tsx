@@ -21,7 +21,7 @@ export function PageVerifyEmail() {
         const emailCode = event.currentTarget.emailCode.value;
         try {
             await Api.verifyEmailCode({ emailAddress, emailCode });
-            navigate('/informacoes-residenciais');
+            navigate('/residential-information');
         } catch (error) {
             setMsg(true);
         }

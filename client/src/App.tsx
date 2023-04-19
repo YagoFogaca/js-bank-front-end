@@ -5,8 +5,8 @@ import { PageCpf } from './pages/page-cpf';
 import { PagePersonalInformation } from './pages/page-informacoes';
 import { PageEmail } from './pages/page-email';
 import { PageVerifyEmail } from './pages/page-verify-email';
-import { PageResidencia } from './pages/page-residencia';
-import { PageFoto } from './pages/page-foto';
+import { PageResidential } from './pages/page-residencia';
+import { PagePhoto } from './pages/page-foto';
 import { RoutesCheckInformation } from './routes/index.routes.check-information';
 
 export function App() {
@@ -27,10 +27,10 @@ export function App() {
                             element={<PageVerifyEmail />}
                         />
                         <Route
-                            path="/informacoes-residenciais"
-                            element={<PageResidencia />}
+                            path="/residential-information"
+                            element={<PageResidential />}
                         />
-                        <Route path="/foto" element={<PageFoto />} />
+                        <Route path="/photo" element={<PagePhoto />} />
                         <Route
                             path="/check-information/*"
                             element={<RoutesCheckInformation />}
