@@ -38,5 +38,6 @@ export type PropsPersonalInformation = {
     textFullName?: string;
     textBirthDate?: string;
     textPhoneNumber?: string;
+    textBtn?: string;
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 };

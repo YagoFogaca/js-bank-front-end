@@ -10,6 +10,7 @@ export function PersonalInformation({
     textFullName,
     textBirthDate,
     textPhoneNumber,
+    textBtn,
     handleSubmit,
 }: PropsPersonalInformation) {
     const [disabledBtn, setDisabledBtn] = useState({
@@ -118,7 +119,7 @@ export function PersonalInformation({
                                 )
                             }
                         >
-                            Seguir
+                            {textBtn ?? 'seguir'}
                         </Btn>
                     </BoxBtns>
                 </form>

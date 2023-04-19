@@ -24,6 +24,7 @@ export function PageCheckPersonal() {
             textFullName={user.fullName}
             textBirthDate={user.birthDate}
             textPhoneNumber={user.phoneNumber}
+            textBtn="Conferir"
         />
     );
 }
