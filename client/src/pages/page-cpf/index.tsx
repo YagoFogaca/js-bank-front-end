@@ -27,7 +27,7 @@ export function PageCpf() {
         try {
             await Api.findDocumentNumber(documentNumber);
             setUser({ ...user, documentNumber });
-            navigate('/informacoes-pessoais');
+            navigate('/personal-information');
         } catch (error) {
             setValidateDocumentNumber({
                 message: 'CPF já cadastrado!',
