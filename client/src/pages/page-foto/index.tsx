@@ -24,7 +24,7 @@ export function PageFoto() {
                 documentNumber: user.documentNumber,
                 imageBase64: imgUrl,
             });
-            // Redirecionar o usuário para a pagina seguinte
+            navigate('/check-information/');
         } catch (error) {
             console.log(error);
             setShowConfirm({

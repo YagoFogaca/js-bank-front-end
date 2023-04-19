@@ -7,6 +7,7 @@ import { PageEmail } from './pages/page-email';
 import { PageVerifyEmail } from './pages/page-verify-email';
 import { PageResidencia } from './pages/page-residencia';
 import { PageFoto } from './pages/page-foto';
+import { RoutesCheckInformation } from './routes/index.routes.check-information';
 
 export function App() {
     return (
@@ -30,6 +31,10 @@ export function App() {
                             element={<PageResidencia />}
                         />
                         <Route path="/foto" element={<PageFoto />} />
+                        <Route
+                            path="/check-information/*"
+                            element={<RoutesCheckInformation />}
+                        />
                     </Routes>
                 </ContextProvider>
             </BrowserRouter>
