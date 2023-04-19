@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
+import { Text } from '../../styled-components/text-information/index.text';
 import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
 import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
@@ -61,6 +62,7 @@ export function PageCpf() {
     return (
         <>
             <CardRegistration>
+                <Text>Inseria seu CPF para abertura de conta</Text>
                 <form onSubmit={handleSubmit}>
                     <VarianteSpanError visible={validateDocumentNumber.valid}>
                         {validateDocumentNumber.message}
