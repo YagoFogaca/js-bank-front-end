@@ -1,10 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
 import { PersonalInformation } from '../../components/personal-information/index.personal-information';
+import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
 
 export function PagePersonalInformation() {
+    const [disabledBtn, setDisabledBtn] = useState({
+        fullName: true,
+        birthDate: true,
+        phoneNumber: true,
+    });
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -23,6 +29,19 @@ export function PagePersonalInformation() {
             <CardRegistration>
                 <form onSubmit={handleSubmit}>
                     <PersonalInformation />
+                    <BoxBtns>
+                        <Btn
+                            disabled={
+                                !(
+                                    !disabledBtn.fullName &&
+                                    !disabledBtn.birthDate &&
+                                    !disabledBtn.phoneNumber
+                                )
+                            }
+                        >
+                            seguir
+                        </Btn>
+                    </BoxBtns>
                 </form>
             </CardRegistration>
         </>

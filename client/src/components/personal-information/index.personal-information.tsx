@@ -3,13 +3,11 @@ import { PropsPersonalInformation } from '../../utils/types/index.props';
 import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import { SpanError } from '../../styled-components/span/index.span';
-import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
 
 export function PersonalInformation({
     textFullName,
     textBirthDate,
     textPhoneNumber,
-    textBtn,
 }: PropsPersonalInformation) {
     const [disabledBtn, setDisabledBtn] = useState({
         fullName: true,
@@ -102,20 +100,6 @@ export function PersonalInformation({
                     Telefone inválido
                 </SpanError>
             </BoxInput>
-
-            <BoxBtns>
-                <Btn
-                    disabled={
-                        !(
-                            !disabledBtn.fullName &&
-                            !disabledBtn.birthDate &&
-                            !disabledBtn.phoneNumber
-                        )
-                    }
-                >
-                    {textBtn ?? 'seguir'}
-                </Btn>
-            </BoxBtns>
         </>
     );
 }

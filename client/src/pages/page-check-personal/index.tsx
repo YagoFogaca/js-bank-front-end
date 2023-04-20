@@ -11,6 +11,7 @@ import {
 } from '../../styled-components/span/index.span';
 import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
+import { PersonalInformation } from '../../components/personal-information/index.personal-information';
 
 export function PageCheckPersonal() {
     const { user, setUser } = useContext(UserContext);
@@ -45,39 +46,7 @@ export function PageCheckPersonal() {
                     <SpanError visible={false}>Telefone inválido</SpanError>
                 </BoxInput>
 
-                <BoxInput>
-                    <Input
-                        // defaultValue={textFullName}
-                        required
-                        id="fullName"
-                    />
-                    <Label>Nome completo</Label>
-                    <SpanError visible={false}>Nome inválido</SpanError>
-                </BoxInput>
-
-                <BoxInput>
-                    <Input
-                        // defaultValue={textBirthDate}
-                        required
-                        id="birthDate"
-                        type="date"
-                        placeholder=""
-                    />
-                    <Label>Data de nascimento</Label>
-                    <SpanError visible={false}>
-                        Você precisa ser maior que 18 anos
-                    </SpanError>
-                </BoxInput>
-
-                <BoxInput>
-                    <Input
-                        // defaultValue={textPhoneNumber}
-                        required
-                        id="phoneNumber"
-                    />
-                    <Label>Telefone</Label>
-                    <SpanError visible={false}>Telefone inválido</SpanError>
-                </BoxInput>
+                <PersonalInformation />
 
                 <Text>Confirme seu endereço</Text>
                 <I.BoxInput>
