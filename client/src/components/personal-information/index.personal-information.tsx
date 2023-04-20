@@ -10,7 +10,6 @@ export function PersonalInformation({
     textBirthDate,
     textPhoneNumber,
     textBtn,
-    handleSubmit,
 }: PropsPersonalInformation) {
     const [disabledBtn, setDisabledBtn] = useState({
         fullName: true,
@@ -65,60 +64,58 @@ export function PersonalInformation({
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <BoxInput>
-                    <Input
-                        defaultValue={textFullName}
-                        required
-                        id="fullName"
-                        onChange={handleFullNameChange}
-                    />
-                    <Label>Nome completo</Label>
-                    <SpanError visible={errorFullName}>Nome inválido</SpanError>
-                </BoxInput>
+            <BoxInput>
+                <Input
+                    defaultValue={textFullName}
+                    required
+                    id="fullName"
+                    onChange={handleFullNameChange}
+                />
+                <Label>Nome completo</Label>
+                <SpanError visible={errorFullName}>Nome inválido</SpanError>
+            </BoxInput>
 
-                <BoxInput>
-                    <Input
-                        defaultValue={textBirthDate}
-                        required
-                        id="birthDate"
-                        type="date"
-                        placeholder=""
-                        onChange={handleBirthDateChange}
-                    />
-                    <Label>Data de nascimento</Label>
-                    <SpanError visible={errorBirthDate}>
-                        Você precisa ser maior que 18 anos
-                    </SpanError>
-                </BoxInput>
+            <BoxInput>
+                <Input
+                    defaultValue={textBirthDate}
+                    required
+                    id="birthDate"
+                    type="date"
+                    placeholder=""
+                    onChange={handleBirthDateChange}
+                />
+                <Label>Data de nascimento</Label>
+                <SpanError visible={errorBirthDate}>
+                    Você precisa ser maior que 18 anos
+                </SpanError>
+            </BoxInput>
 
-                <BoxInput>
-                    <Input
-                        defaultValue={textPhoneNumber}
-                        required
-                        id="phoneNumber"
-                        onChange={handlePhoneNumberChange}
-                    />
-                    <Label>Telefone</Label>
-                    <SpanError visible={errorPhoneNumber}>
-                        Telefone inválido
-                    </SpanError>
-                </BoxInput>
+            <BoxInput>
+                <Input
+                    defaultValue={textPhoneNumber}
+                    required
+                    id="phoneNumber"
+                    onChange={handlePhoneNumberChange}
+                />
+                <Label>Telefone</Label>
+                <SpanError visible={errorPhoneNumber}>
+                    Telefone inválido
+                </SpanError>
+            </BoxInput>
 
-                <BoxBtns>
-                    <Btn
-                        disabled={
-                            !(
-                                !disabledBtn.fullName &&
-                                !disabledBtn.birthDate &&
-                                !disabledBtn.phoneNumber
-                            )
-                        }
-                    >
-                        {textBtn ?? 'seguir'}
-                    </Btn>
-                </BoxBtns>
-            </form>
+            <BoxBtns>
+                <Btn
+                    disabled={
+                        !(
+                            !disabledBtn.fullName &&
+                            !disabledBtn.birthDate &&
+                            !disabledBtn.phoneNumber
+                        )
+                    }
+                >
+                    {textBtn ?? 'seguir'}
+                </Btn>
+            </BoxBtns>
         </>
     );
 }
