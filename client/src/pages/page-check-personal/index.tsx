@@ -12,6 +12,7 @@ import {
 import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import { PersonalInformation } from '../../components/personal-information/index.personal-information';
+import { AddressInformation } from '../../components/address-information/index.address-information';
 
 export function PageCheckPersonal() {
     const { user, setUser } = useContext(UserContext);
@@ -49,42 +50,7 @@ export function PageCheckPersonal() {
                 <PersonalInformation />
 
                 <Text>Confirme seu endereço</Text>
-                <I.BoxInput>
-                    <I.Input required id="zipCode" type="text" />
-                    <Label>CEP</Label>
-                    <SpanError visible={false}>
-                        CEP invalido ou não existe
-                    </SpanError>
-                </I.BoxInput>
-
-                <I.BoxInputs>
-                    <I.BoxInput>
-                        <I.VarianteInput required id="state" type="text" />
-                        <Label>Estado</Label>
-                    </I.BoxInput>
-
-                    <I.BoxInput>
-                        <I.VarianteInput required id="city" type="text" />
-                        <Label>Cidade</Label>
-                    </I.BoxInput>
-                </I.BoxInputs>
-
-                <I.BoxInput>
-                    <I.Input required id="street" type="text" />
-                    <Label>Rua</Label>
-                </I.BoxInput>
-
-                <I.BoxInputs>
-                    <I.BoxInput>
-                        <I.VarianteInput required id="number" type="text" />
-                        <Label>Número</Label>
-                    </I.BoxInput>
-
-                    <I.BoxInput>
-                        <I.VarianteInput2 id="complement" type="text" />
-                        <Label>Complemento</Label>
-                    </I.BoxInput>
-                </I.BoxInputs>
+                <AddressInformation />
 
                 <C.BoxBtns>
                     <C.Btn>Seguir</C.Btn>
