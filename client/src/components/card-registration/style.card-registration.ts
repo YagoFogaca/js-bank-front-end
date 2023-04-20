@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 export const SectionRegistration = styled.section`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 75%;
     max-width: 650px;
     min-width: 240px;
-    height: 65%;
-    min-height: 450px;
+    min-height: 65%;
     background-color: rgba(234, 234, 234, 0.85);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 6px;
@@ -25,6 +27,7 @@ export const DivRegistration = styled.div`
 
 export const ImgLogo = styled.img`
     width: 160px;
+    margin: 20px 0;
     @media (max-width: 490px) {
         width: 100px;
     }

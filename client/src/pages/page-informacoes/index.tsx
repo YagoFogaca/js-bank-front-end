@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
+import { CardRegistration } from '../../components/card-registration/index.card-registration';
 import { PersonalInformation } from '../../components/personal-information/index.personal-information';
 
 export function PagePersonalInformation() {
@@ -18,7 +19,9 @@ export function PagePersonalInformation() {
 
     return (
         <>
-            <PersonalInformation handleSubmit={handleSubmit} />
+            <CardRegistration>
+                <PersonalInformation handleSubmit={handleSubmit} />
+            </CardRegistration>
         </>
     );
 }

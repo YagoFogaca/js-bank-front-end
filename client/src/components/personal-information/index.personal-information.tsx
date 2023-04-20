@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { PropsPersonalInformation } from '../../utils/types/index.props';
-import { CardRegistration } from '../card-registration/index.card-registration';
 import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import { SpanError } from '../../styled-components/span/index.span';
@@ -66,64 +65,60 @@ export function PersonalInformation({
 
     return (
         <>
-            <CardRegistration>
-                <form onSubmit={handleSubmit}>
-                    <BoxInput>
-                        <Input
-                            defaultValue={textFullName}
-                            required
-                            id="fullName"
-                            onChange={handleFullNameChange}
-                        />
-                        <Label>Nome completo</Label>
-                        <SpanError visible={errorFullName}>
-                            Nome inválido
-                        </SpanError>
-                    </BoxInput>
+            <form onSubmit={handleSubmit}>
+                <BoxInput>
+                    <Input
+                        defaultValue={textFullName}
+                        required
+                        id="fullName"
+                        onChange={handleFullNameChange}
+                    />
+                    <Label>Nome completo</Label>
+                    <SpanError visible={errorFullName}>Nome inválido</SpanError>
+                </BoxInput>
 
-                    <BoxInput>
-                        <Input
-                            defaultValue={textBirthDate}
-                            required
-                            id="birthDate"
-                            type="date"
-                            placeholder=""
-                            onChange={handleBirthDateChange}
-                        />
-                        <Label>Data de nascimento</Label>
-                        <SpanError visible={errorBirthDate}>
-                            Você precisa ser maior que 18 anos
-                        </SpanError>
-                    </BoxInput>
+                <BoxInput>
+                    <Input
+                        defaultValue={textBirthDate}
+                        required
+                        id="birthDate"
+                        type="date"
+                        placeholder=""
+                        onChange={handleBirthDateChange}
+                    />
+                    <Label>Data de nascimento</Label>
+                    <SpanError visible={errorBirthDate}>
+                        Você precisa ser maior que 18 anos
+                    </SpanError>
+                </BoxInput>
 
-                    <BoxInput>
-                        <Input
-                            defaultValue={textPhoneNumber}
-                            required
-                            id="phoneNumber"
-                            onChange={handlePhoneNumberChange}
-                        />
-                        <Label>Telefone</Label>
-                        <SpanError visible={errorPhoneNumber}>
-                            Telefone inválido
-                        </SpanError>
-                    </BoxInput>
+                <BoxInput>
+                    <Input
+                        defaultValue={textPhoneNumber}
+                        required
+                        id="phoneNumber"
+                        onChange={handlePhoneNumberChange}
+                    />
+                    <Label>Telefone</Label>
+                    <SpanError visible={errorPhoneNumber}>
+                        Telefone inválido
+                    </SpanError>
+                </BoxInput>
 
-                    <BoxBtns>
-                        <Btn
-                            disabled={
-                                !(
-                                    !disabledBtn.fullName &&
-                                    !disabledBtn.birthDate &&
-                                    !disabledBtn.phoneNumber
-                                )
-                            }
-                        >
-                            {textBtn ?? 'seguir'}
-                        </Btn>
-                    </BoxBtns>
-                </form>
-            </CardRegistration>
+                <BoxBtns>
+                    <Btn
+                        disabled={
+                            !(
+                                !disabledBtn.fullName &&
+                                !disabledBtn.birthDate &&
+                                !disabledBtn.phoneNumber
+                            )
+                        }
+                    >
+                        {textBtn ?? 'seguir'}
+                    </Btn>
+                </BoxBtns>
+            </form>
         </>
     );
 }
