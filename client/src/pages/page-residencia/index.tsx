@@ -1,36 +1,14 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
-import { ViaCep } from '../../utils/via-cep';
-import { ResViaCep } from '../../utils/types/index.props';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
 import { Text } from '../../styled-components/text-information/index.text';
-import * as C from '../../styled-components/inputs/index.input';
-import { Label } from '../../styled-components/label/index.label';
-import { SpanError } from '../../styled-components/span/index.span';
+import { AddressInformation } from '../../components/address-information/index.address-information';
 import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
 
 export function PageResidential() {
-    const [addressData, setAddressData] = useState<ResViaCep>();
-    const [errorCep, setErrorCep] = useState(false);
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
-
-    const handleZipCodeChange = async (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
-        const zipCode = event.target.value;
-
-        if (zipCode.length == 8) {
-            try {
-                const addressData: ResViaCep = await ViaCep(zipCode);
-                setAddressData(addressData);
-            } catch (error) {
-                console.log(error);
-                setErrorCep(true);
-            }
-        }
-    };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -54,63 +32,7 @@ export function PageResidential() {
             <CardRegistration>
                 <Text>Insira suas informações residenciais</Text>
                 <form onSubmit={handleSubmit}>
-                    <C.BoxInput>
-                        <C.Input
-                            required
-                            id="zipCode"
-                            type="text"
-                            onChange={handleZipCodeChange}
-                        />
-                        <Label>CEP</Label>
-                        <SpanError visible={errorCep}>
-                            CEP invalido ou não existe
-                        </SpanError>
-                    </C.BoxInput>
-
-                    <C.BoxInputs>
-                        <C.BoxInput>
-                            <C.VarianteInput
-                                required
-                                id="state"
-                                type="text"
-                                defaultValue={addressData?.uf}
-                            />
-                            <Label>Estado</Label>
-                        </C.BoxInput>
-
-                        <C.BoxInput>
-                            <C.VarianteInput
-                                required
-                                id="city"
-                                type="text"
-                                defaultValue={addressData?.localidade}
-                            />
-                            <Label>Cidade</Label>
-                        </C.BoxInput>
-                    </C.BoxInputs>
-
-                    <C.BoxInput>
-                        <C.Input
-                            required
-                            id="street"
-                            type="text"
-                            defaultValue={addressData?.logradouro}
-                        />
-                        <Label>Rua</Label>
-                    </C.BoxInput>
-
-                    <C.BoxInputs>
-                        <C.BoxInput>
-                            <C.VarianteInput required id="number" type="text" />
-                            <Label>Número</Label>
-                        </C.BoxInput>
-
-                        <C.BoxInput>
-                            <C.VarianteInput2 id="complement" type="text" />
-                            <Label>Complemento</Label>
-                        </C.BoxInput>
-                    </C.BoxInputs>
-
+                    <AddressInformation />
                     <BoxBtns>
                         <Btn>Seguir</Btn>
                     </BoxBtns>
