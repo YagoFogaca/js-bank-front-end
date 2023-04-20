@@ -8,6 +8,7 @@ import { PageVerifyEmail } from './pages/page-verify-email';
 import { PageResidential } from './pages/page-residencia';
 import { PagePhoto } from './pages/page-foto';
 import { RoutesCheckInformation } from './routes/index.routes.check-information';
+import { CreateAccount } from './pages/page-create-account';
 
 export function App() {
     return (
@@ -34,6 +35,10 @@ export function App() {
                         <Route
                             path="/check-information/*"
                             element={<RoutesCheckInformation />}
+                        />
+                        <Route
+                            path="/create-account"
+                            element={<CreateAccount />}
                         />
                     </Routes>
                 </ContextProvider>
