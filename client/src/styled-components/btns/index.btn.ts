@@ -24,7 +24,7 @@ export const Btn = styled.button`
     }
 
     &.error {
-        opacity: 0.5;
+        background-color: rgba(0 74 247 / 45%);
         cursor: no-drop;
     }
 `;
