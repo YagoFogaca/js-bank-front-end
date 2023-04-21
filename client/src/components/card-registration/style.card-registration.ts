@@ -9,8 +9,8 @@ export const SectionRegistration = styled.section`
     min-width: 240px;
 
     min-height: 450px;
-    background-color: rgba(234, 234, 234, 0.85);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-color: rgb(255 255 255 / 90%);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 10px 0px;
     border-radius: 6px;
     padding: 15px;
 `;
