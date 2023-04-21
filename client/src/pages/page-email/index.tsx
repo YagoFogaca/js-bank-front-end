@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { Api } from '../../utils/api/api';
 import { UserContext } from '../../contexts/user.context';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
-import { Input } from '../../styled-components/inputs/index.input';
-import { Label } from '../../styled-components/label/index.label';
-import * as C from '../../styled-components/btns/index.btn';
-
 import * as TI from '../../styled-components/text-information/index.text';
 import * as TE from '../../styled-components/span/index.span';
+import { Label } from '../../styled-components/label/index.label';
+import { Input } from '../../styled-components/inputs/index.input';
+import * as C from '../../styled-components/btns/index.btn';
 
 export function PageEmail() {
     const navigate = useNavigate();
