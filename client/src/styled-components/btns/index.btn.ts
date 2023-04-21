@@ -9,7 +9,7 @@ export const Btn = styled.button`
     padding: 8px 6px;
     margin: 20px 0;
     width: 100%;
-    background-color: #004af7;
+    background-color: rgba(0 74 247 / 83%);
     color: #fffcfc;
     border: none;
     border-radius: 4px;
@@ -18,6 +18,10 @@ export const Btn = styled.button`
     font-weight: 800;
     text-transform: uppercase;
     transition: all 0.3s ease-in;
+
+    &:hover {
+        background-color: rgba(0 74 247 / 100%);
+    }
 
     &.error {
         opacity: 0.5;
