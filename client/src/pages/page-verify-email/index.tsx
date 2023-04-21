@@ -3,16 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
 import { Api } from '../../utils/api/api';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
-import { Text } from '../../styled-components/text-information/index.text';
-import { VarianteSpanError } from '../../styled-components/span/index.span';
-import { BoxInput, Input } from '../../styled-components/inputs/index.input';
+import { Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import * as C from '../../styled-components/btns/index.btn';
+import * as TI from '../../styled-components/text-information/index.text';
+import * as TE from '../../styled-components/span/index.span';
 
 export function PageVerifyEmail() {
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
-    const [msg, setMsg] = useState(false);
+    const [emailCodeCheck, setEmailCodeCheck] = useState(false);
+    const [validateEmailCode, setValidateEmailCode] = useState(false);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -23,7 +24,20 @@ export function PageVerifyEmail() {
             await Api.verifyEmailCode({ emailAddress, emailCode });
             navigate('/residential-information');
         } catch (error) {
-            setMsg(true);
+            setValidateEmailCode(true);
+        }
+    };
+
+    const handleEmailCodeChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        const regex = /[^0-9]/;
+        const emailCode = event.target.value;
+
+        if (regex.test(emailCode) || emailCode.length !== 4) {
+            setEmailCodeCheck(true);
+        } else if (emailCodeCheck) {
+            setEmailCodeCheck(false);
         }
     };
 
@@ -34,21 +48,40 @@ export function PageVerifyEmail() {
     return (
         <CardRegistration>
             <form onSubmit={handleSubmit}>
-                {msg ? (
-                    <VarianteSpanError visible={msg}>
-                        Código invalido
-                    </VarianteSpanError>
+                {validateEmailCode ? (
+                    <TE.TextErrorVariante>
+                        Codigo invalido!
+                    </TE.TextErrorVariante>
                 ) : (
-                    <Text>
-                        Enviamos um código de validação para o e-mail informado.
-                        Ele tem duração de 15 minutos.
-                    </Text>
+                    <TI.Text>
+                        Enviamos um código para o e-mail informado. Ele serve
+                        para validar o e-mail e tem duração de 15 minutos.
+                    </TI.Text>
                 )}
 
-                <BoxInput>
-                    <Input required id="emailCode" type="text" />
-                    <Label>Insira o código</Label>
-                </BoxInput>
+                <div>
+                    <Label>Código</Label>
+
+                    <Input
+                        className={emailCodeCheck ? 'error' : ''}
+                        required
+                        id="emailCode"
+                        type="text"
+                        autoComplete="off"
+                        placeholder="0000"
+                        onChange={handleEmailCodeChange}
+                    />
+
+                    {emailCodeCheck ? (
+                        <TE.TextError visible={emailCodeCheck}>
+                            Seu codigo é invalido!
+                        </TE.TextError>
+                    ) : (
+                        <TI.TextInformation>
+                            Não se esqueça de olhar na caixa de span.
+                        </TI.TextInformation>
+                    )}
+                </div>
 
                 <C.VarianteBoxBtns>
                     <C.VarianteButton

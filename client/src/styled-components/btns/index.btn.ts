@@ -38,8 +38,14 @@ export const VarianteBoxBtns = styled(BoxBtns)`
 
 export const VarianteButton = styled(Btn)<PropsVarianteButton>`
     width: 48%;
-    background-color: ${props => (props.color ? 'rgb(54 217 141)' : '#004af7')};
+    background-color: ${props =>
+        props.color ? 'rgba(54 217 141)' : 'rgba(0 74 247 / 83%)'};
     color: ${props => (props.color ? 'rgb(58 58 58);' : '#fffcfc')};
+
+    &:hover {
+        background-color: ${props =>
+            props.color ? 'rgba(54 217 141 / 50%)' : 'rgba(0 74 247 / 100%)'};
+    }
 
     @media (max-width: 793px) {
         width: 100%;
