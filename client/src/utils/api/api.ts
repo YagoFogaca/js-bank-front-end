@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { UserContextType } from '../types/index.context';
 
-axios.defaults.baseURL =
-    'https://jsbank-bank-end.onrender.com';
+axios.defaults.baseURL = 'https://jsbank-back-end.onrender.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export class Api {
@@ -10,9 +9,7 @@ export class Api {
         return (await axios.get(`/documents/${documentNumber}`)).data;
     }
 
-    static async sendEmailCode(data: { 
-        emailAddress: string 
-    }) {
+    static async sendEmailCode(data: { emailAddress: string }) {
         return (await axios.post(`/codes/send`, data)).data;
     }
 
