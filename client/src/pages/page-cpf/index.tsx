@@ -38,6 +38,7 @@ export function PageCpf() {
 
         if (regex.test(newDocumentNumber) || newDocumentNumber.length !== 11) {
             setDocumentNumberCheck(true);
+            setDisabledBtn(true);
         } else if (documentNumberCheck || disabledBtn) {
             setDocumentNumberCheck(false);
             setDisabledBtn(false);
@@ -76,7 +77,12 @@ export function PageCpf() {
                         </TI.TextInformation>
                     )}
                     <B.BoxBtns>
-                        <B.Btn disabled={disabledBtn}>Seguir</B.Btn>
+                        <B.Btn
+                            disabled={disabledBtn}
+                            className={disabledBtn ? 'error' : ''}
+                        >
+                            Seguir
+                        </B.Btn>
                     </B.BoxBtns>
                 </form>
             </CardRegistration>

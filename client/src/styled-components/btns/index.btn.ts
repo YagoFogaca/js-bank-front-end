@@ -17,6 +17,12 @@ export const Btn = styled.button`
     font-size: 17px;
     font-weight: 800;
     text-transform: uppercase;
+    transition: all 0.3s ease-in;
+
+    &.error {
+        opacity: 0.5;
+        cursor: no-drop;
+    }
 `;
 
 export const VarianteBoxBtns = styled(BoxBtns)`
