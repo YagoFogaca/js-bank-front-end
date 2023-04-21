@@ -38,4 +38,6 @@ export type PropsPersonalInformation = {
     textFullName?: string;
     textBirthDate?: string;
     textPhoneNumber?: string;
+    disabledBtn: any;
+    setDisabledBtn: (value: any) => void;
 };

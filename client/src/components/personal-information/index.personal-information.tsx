@@ -8,12 +8,9 @@ export function PersonalInformation({
     textFullName,
     textBirthDate,
     textPhoneNumber,
+    disabledBtn,
+    setDisabledBtn,
 }: PropsPersonalInformation) {
-    const [disabledBtn, setDisabledBtn] = useState({
-        fullName: true,
-        birthDate: true,
-        phoneNumber: true,
-    });
     const [errorFullName, setErrorFullName] = useState(false);
     const [errorBirthDate, setBirthDate] = useState(false);
     const [errorPhoneNumber, setPhoneNumber] = useState(false);

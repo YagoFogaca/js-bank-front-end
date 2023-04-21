@@ -28,7 +28,10 @@ export function PagePersonalInformation() {
         <>
             <CardRegistration>
                 <form onSubmit={handleSubmit}>
-                    <PersonalInformation />
+                    <PersonalInformation
+                        setDisabledBtn={setDisabledBtn}
+                        disabledBtn={disabledBtn}
+                    />
                     <BoxBtns>
                         <Btn
                             disabled={

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
 import { Text } from '../../styled-components/text-information/index.text';
@@ -15,6 +15,11 @@ import { PersonalInformation } from '../../components/personal-information/index
 import { AddressInformation } from '../../components/address-information/index.address-information';
 
 export function PageCheckPersonal() {
+    const [disabledBtn, setDisabledBtn] = useState({
+        fullName: true,
+        birthDate: true,
+        phoneNumber: true,
+    });
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -47,7 +52,10 @@ export function PageCheckPersonal() {
                     <SpanError visible={false}>Telefone inválido</SpanError>
                 </BoxInput>
 
-                <PersonalInformation />
+                <PersonalInformation
+                    setDisabledBtn={setDisabledBtn}
+                    disabledBtn={disabledBtn}
+                />
 
                 <Text>Confirme seu endereço</Text>
                 <AddressInformation />
