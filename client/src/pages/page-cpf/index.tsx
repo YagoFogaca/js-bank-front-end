@@ -1,28 +1,23 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CardRegistration } from '../../components/card-registration/index.card-registration';
-import { Text } from '../../styled-components/text-information/index.text';
-import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
-import { BoxInput, Input } from '../../styled-components/inputs/index.input';
-import { Label } from '../../styled-components/label/index.label';
 import { UserContext } from '../../contexts/user.context';
-import { VarianteSpanError } from '../../styled-components/span/index.span';
-import { ValidateInfos } from '../../utils/types/index.props';
 import { Api } from '../../utils/api/api';
+import { CardRegistration } from '../../components/card-registration/index.card-registration';
+import * as TI from '../../styled-components/text-information/index.text';
+import * as TE from '../../styled-components/span/index.span';
+import { Label } from '../../styled-components/label/index.label';
+import { Input } from '../../styled-components/inputs/index.input';
+import * as B from '../../styled-components/btns/index.btn';
 
 export function PageCpf() {
-    const [disabledBtn, setDisabledBtn] = useState(true);
-    const [validateDocumentNumber, setValidateDocumentNumber] =
-        useState<ValidateInfos>({
-            message: '',
-            valid: false,
-        });
-    const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
+    const { user, setUser } = useContext(UserContext);
+    const [disabledBtn, setDisabledBtn] = useState(true);
+    const [documentNumberCheck, setDocumentNumberCheck] = useState(false);
+    const [validateDocumentNumber, setValidateDocumentNumber] = useState(false);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         const documentNumber = event.currentTarget.documentNumber.value;
 
         try {
@@ -30,31 +25,21 @@ export function PageCpf() {
             setUser({ ...user, documentNumber });
             navigate('/personal-information');
         } catch (error) {
-            setValidateDocumentNumber({
-                message: 'CPF já cadastrado!',
-                valid: true,
-            });
+            console.log(error);
+            setValidateDocumentNumber(true);
         }
     };
 
     const handleDocumentNumberChange = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
+        const regex = /[^0-9]/;
         const newDocumentNumber = event.target.value;
 
-        if (
-            /[^0-9]/.test(newDocumentNumber) ||
-            newDocumentNumber.length !== 11
-        ) {
-            setValidateDocumentNumber({
-                message: 'CPF inválido!',
-                valid: true,
-            });
-        } else {
-            setValidateDocumentNumber({
-                message: '',
-                valid: false,
-            });
+        if (regex.test(newDocumentNumber) || newDocumentNumber.length !== 11) {
+            setDocumentNumberCheck(true);
+        } else if (documentNumberCheck || disabledBtn) {
+            setDocumentNumberCheck(false);
             setDisabledBtn(false);
         }
     };
@@ -62,22 +47,37 @@ export function PageCpf() {
     return (
         <>
             <CardRegistration>
-                <Text>Inseria seu CPF para abertura de conta</Text>
+                {validateDocumentNumber ? (
+                    <TE.TextErrorVariante>
+                        CPF já cadastrado
+                    </TE.TextErrorVariante>
+                ) : (
+                    <TI.Text>Informe seu CPF para a gente começar</TI.Text>
+                )}
                 <form onSubmit={handleSubmit}>
-                    <VarianteSpanError visible={validateDocumentNumber.valid}>
-                        {validateDocumentNumber.message}
-                    </VarianteSpanError>
-                    <BoxInput>
+                    <div>
+                        <Label>CPF</Label>
                         <Input
+                            className={documentNumberCheck ? 'error' : ''}
+                            placeholder="000.000.000-00"
                             required
                             name="documentNumber"
                             onChange={handleDocumentNumberChange}
                         />
-                        <Label>CPF</Label>
-                    </BoxInput>
-                    <BoxBtns>
-                        <Btn disabled={disabledBtn}>Seguir</Btn>
-                    </BoxBtns>
+                    </div>
+
+                    {documentNumberCheck ? (
+                        <TE.TextError visible={documentNumberCheck}>
+                            Seu CPF é invalido
+                        </TE.TextError>
+                    ) : (
+                        <TI.TextInformation>
+                            Somente números, sem ponto e traço.
+                        </TI.TextInformation>
+                    )}
+                    <B.BoxBtns>
+                        <B.Btn disabled={disabledBtn}>Seguir</B.Btn>
+                    </B.BoxBtns>
                 </form>
             </CardRegistration>
         </>
