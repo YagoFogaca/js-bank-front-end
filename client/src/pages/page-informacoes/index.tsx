@@ -4,6 +4,7 @@ import { UserContext } from '../../contexts/user.context';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
 import { PersonalInformation } from '../../components/personal-information/index.personal-information';
 import { BoxBtns, Btn } from '../../styled-components/btns/index.btn';
+import { Text } from '../../styled-components/text-information/index.text';
 
 export function PagePersonalInformation() {
     const [disabledBtn, setDisabledBtn] = useState({
@@ -27,6 +28,7 @@ export function PagePersonalInformation() {
     return (
         <>
             <CardRegistration>
+                <Text>Agora informe seus dados pessoais</Text>
                 <form onSubmit={handleSubmit}>
                     <PersonalInformation
                         setDisabledBtn={setDisabledBtn}
@@ -40,6 +42,15 @@ export function PagePersonalInformation() {
                                     !disabledBtn.birthDate &&
                                     !disabledBtn.phoneNumber
                                 )
+                            }
+                            className={
+                                !(
+                                    !disabledBtn.fullName &&
+                                    !disabledBtn.birthDate &&
+                                    !disabledBtn.phoneNumber
+                                )
+                                    ? 'error'
+                                    : ''
                             }
                         >
                             seguir

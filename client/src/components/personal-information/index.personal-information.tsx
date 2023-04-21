@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { PropsPersonalInformation } from '../../utils/types/index.props';
-import { BoxInput, Input } from '../../styled-components/inputs/index.input';
+import { Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
-import { SpanError } from '../../styled-components/span/index.span';
+import * as TI from '../../styled-components/text-information/index.text';
+import * as TE from '../../styled-components/span/index.span';
 
 export function PersonalInformation({
     textFullName,
@@ -59,44 +60,72 @@ export function PersonalInformation({
 
     return (
         <>
-            <BoxInput>
+            <div>
+                <Label>Nome completo*</Label>
                 <Input
+                    placeholder="José Fulano de Tal"
                     defaultValue={textFullName}
                     required
                     id="fullName"
+                    className={errorFullName ? 'error' : ''}
+                    autoComplete="off"
                     onChange={handleFullNameChange}
                 />
-                <Label>Nome completo</Label>
-                <SpanError visible={errorFullName}>Nome inválido</SpanError>
-            </BoxInput>
 
-            <BoxInput>
+                {errorFullName ? (
+                    <TE.TextError visible={errorFullName}>
+                        Seu nome é invalido!
+                    </TE.TextError>
+                ) : (
+                    <TI.TextInformation>Seu nome completo.</TI.TextInformation>
+                )}
+            </div>
+
+            <div>
+                <Label>Data de nascimento</Label>
                 <Input
+                    placeholder="01/01/2000"
                     defaultValue={textBirthDate}
                     required
                     id="birthDate"
                     type="date"
-                    placeholder=""
+                    className={errorBirthDate ? 'error' : ''}
+                    autoComplete="off"
                     onChange={handleBirthDateChange}
                 />
-                <Label>Data de nascimento</Label>
-                <SpanError visible={errorBirthDate}>
-                    Você precisa ser maior que 18 anos
-                </SpanError>
-            </BoxInput>
+                {errorBirthDate ? (
+                    <TE.TextError visible={errorBirthDate}>
+                        Você precisa ser maior que 18 anos!
+                    </TE.TextError>
+                ) : (
+                    <TI.TextInformation>
+                        Sua data de nascimento, sem as barras.
+                    </TI.TextInformation>
+                )}
+            </div>
 
-            <BoxInput>
+            <div>
+                <Label>Telefone</Label>
                 <Input
+                    placeholder="DD 9XXXX-YYYY"
                     defaultValue={textPhoneNumber}
                     required
                     id="phoneNumber"
+                    type="tel"
+                    className={errorPhoneNumber ? 'error' : ''}
+                    autoComplete="off"
                     onChange={handlePhoneNumberChange}
                 />
-                <Label>Telefone</Label>
-                <SpanError visible={errorPhoneNumber}>
-                    Telefone inválido
-                </SpanError>
-            </BoxInput>
+                {errorPhoneNumber ? (
+                    <TE.TextError visible={errorPhoneNumber}>
+                        Seu telefone é invalido!
+                    </TE.TextError>
+                ) : (
+                    <TI.TextInformation>
+                        Seu telefone pessoal, sem traço e espaços.
+                    </TI.TextInformation>
+                )}
+            </div>
         </>
     );
 }

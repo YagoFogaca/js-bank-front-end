@@ -29,30 +29,14 @@ export const Input = styled.input`
     border: 1px solid rgb(0 0 0 / 51%);
     border-radius: 6px;
     outline: none;
-    background: transparent;
 
     &.error {
         animation: ${shake} 0.5s;
         border: 1px solid rgb(253, 23, 23);
     }
 
-    &::-webkit-datetime-edit-fields-wrapper,
-    &::-webkit-datetime-edit-text {
-        color: transparent !important;
-    }
-
-    &::-webkit-calendar-picker-indicator {
-        display: none;
-    }
-
-    &:focus::-webkit-datetime-edit-fields-wrapper,
-    &:valid::-webkit-datetime-edit-fields-wrapper {
-        color: #000 !important;
-    }
-
-    &:focus::-webkit-calendar-picker-indicator,
-    &:valid::-webkit-calendar-picker-indicator {
-        display: block;
+    &:-internal-autofill-selected {
+        background-color: rgb(253, 253, 253) !important;
     }
 `;
 
@@ -71,30 +55,4 @@ export const VarianteInput2 = styled.input`
     border-bottom: 1px solid #000;
     outline: none;
     background: transparent;
-
-    &:focus ~ label {
-        top: -20px;
-        left: 0;
-        color: #000;
-        font-size: 12px;
-    }
-
-    &::-webkit-datetime-edit-fields-wrapper,
-    &::-webkit-datetime-edit-text {
-        color: transparent !important;
-    }
-
-    &::-webkit-calendar-picker-indicator {
-        display: none;
-    }
-
-    &:focus::-webkit-datetime-edit-fields-wrapper,
-    &:valid::-webkit-datetime-edit-fields-wrapper {
-        color: #000 !important;
-    }
-
-    &:focus::-webkit-calendar-picker-indicator,
-    &:valid::-webkit-calendar-picker-indicator {
-        display: block;
-    }
 `;
