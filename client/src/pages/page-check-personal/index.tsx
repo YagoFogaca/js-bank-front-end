@@ -18,6 +18,8 @@ export function PageCheckPersonal() {
         phoneNumber: true,
     });
 
+    const address = user.homeAddress.split(',');
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -33,15 +35,6 @@ export function PageCheckPersonal() {
             state: event.currentTarget.state.value,
             zipCode: event.currentTarget.zipCode.value,
         });
-        // homeAddress: `${event.currentTarget.city.value}, ${
-        //     event.currentTarget.state.value
-        // }, ${event.currentTarget.street.value}, ${
-        //     event.currentTarget.number.value
-        // }${
-        //     event.currentTarget.complement.value
-        //         ? ', ' + event.currentTarget.complement.value
-        //         : ''
-        // }`,
     };
 
     return (
@@ -52,7 +45,7 @@ export function PageCheckPersonal() {
                 <BoxInput>
                     <Label>CPF</Label>
                     <Input
-                        // defaultValue={textPhoneNumber}
+                        defaultValue={user.documentNumber}
                         placeholder="000.000.000-00"
                         required
                         id="documentNumber"
@@ -69,7 +62,14 @@ export function PageCheckPersonal() {
                 />
 
                 <Text>Confirme seu endereço</Text>
-                <AddressInformation />
+                <AddressInformation
+                    city={address[0]}
+                    state={address[1]}
+                    street={address[2]}
+                    number={address[3]}
+                    complement={address[4] ?? ''}
+                    zipCode={user.zipCode}
+                />
 
                 <C.BoxBtns>
                     <C.Btn

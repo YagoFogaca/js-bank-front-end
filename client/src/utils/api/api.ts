@@ -6,7 +6,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export class Api {
     static async findDocumentNumber(documentNumber: string | undefined) {
-        return (await axios.get(`/documents/${documentNumber}`)).data;
+        return (await axios.get(`/documents/verify/${documentNumber}`)).data;
     }
 
     static async sendEmailCode(data: { emailAddress: string }) {
@@ -24,10 +24,10 @@ export class Api {
         documentNumber: string;
         imageBase64: string | undefined;
     }) {
-        return (await axios.post(`/registration/faces`, data)).data;
+        return (await axios.post(`/faces/register`, data)).data;
     }
 
     static async createUser(data: UserContextType) {
-        return (await axios.post('/users', data)).data;
+        return (await axios.post('/accounts', data)).data;
     }
 }
