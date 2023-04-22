@@ -35,6 +35,8 @@ export function PageCheckPersonal() {
             state: event.currentTarget.state.value,
             zipCode: event.currentTarget.zipCode.value,
         });
+
+        navigate('/create-account');
     };
 
     return (
@@ -72,17 +74,7 @@ export function PageCheckPersonal() {
                 />
 
                 <C.BoxBtns>
-                    <C.Btn
-                        disabled={
-                            !(
-                                !disabledBtn.fullName &&
-                                !disabledBtn.birthDate &&
-                                !disabledBtn.phoneNumber
-                            )
-                        }
-                    >
-                        Seguir
-                    </C.Btn>
+                    <C.Btn>Seguir</C.Btn>
                 </C.BoxBtns>
             </form>
         </CardRegistration>
