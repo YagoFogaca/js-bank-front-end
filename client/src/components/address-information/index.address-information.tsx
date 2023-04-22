@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { ViaCep } from '../../utils/via-cep';
 import { ResViaCep } from '../../utils/types/index.props';
-import * as C from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
-import { SpanError } from '../../styled-components/span/index.span';
+import * as C from '../../styled-components/inputs/index.input';
+import * as TI from '../../styled-components/text-information/index.text';
+import * as TE from '../../styled-components/span/index.span';
 
 // Receber o cep e chamar pela api
 export function AddressInformation() {
     const [addressData, setAddressData] = useState<ResViaCep>();
     const [errorCep, setErrorCep] = useState(false);
+    const [addressDataCheck, setAddressDataCheck] = useState(false);
+
     const viaCep = async (zipCode: string) => {
         try {
             const addressData: ResViaCep = await ViaCep(zipCode);
@@ -25,66 +28,93 @@ export function AddressInformation() {
         const zipCode = event.target.value;
 
         if (zipCode.length == 8) {
+            setAddressDataCheck(false);
             await viaCep(zipCode);
+        } else if (zipCode.length > 8) {
+            setAddressDataCheck(true);
         }
     };
 
     return (
         <>
             <C.BoxInput>
+                <Label>CEP</Label>
                 <C.Input
                     required
+                    className={addressDataCheck ? 'error' : ''}
+                    placeholder="00000000"
                     id="zipCode"
                     type="text"
                     onChange={handleZipCodeChange}
                 />
-                <Label>CEP</Label>
-                <SpanError visible={errorCep}>
-                    CEP invalido ou não existe
-                </SpanError>
+                {addressDataCheck || errorCep ? (
+                    <TE.TextError visible={addressDataCheck || errorCep}>
+                        Seu CEP não foi encontrado!
+                    </TE.TextError>
+                ) : (
+                    <TI.TextInformation>
+                        Somente números, sem ponto e traço.
+                    </TI.TextInformation>
+                )}
             </C.BoxInput>
 
             <C.BoxInputs>
                 <C.BoxInput>
+                    <Label>Estado</Label>
                     <C.VarianteInput
+                        placeholder="NJ"
                         required
                         id="state"
                         type="text"
                         defaultValue={addressData?.uf}
                     />
-                    <Label>Estado</Label>
                 </C.BoxInput>
 
                 <C.BoxInput>
+                    <Label>Cidade</Label>
                     <C.VarianteInput
+                        placeholder="Gotham City"
                         required
                         id="city"
                         type="text"
                         defaultValue={addressData?.localidade}
                     />
-                    <Label>Cidade</Label>
                 </C.BoxInput>
             </C.BoxInputs>
 
             <C.BoxInput>
+                <Label>Rua</Label>
                 <C.Input
+                    placeholder="Rua x"
                     required
                     id="street"
                     type="text"
                     defaultValue={addressData?.logradouro}
                 />
-                <Label>Rua</Label>
             </C.BoxInput>
 
             <C.BoxInputs>
                 <C.BoxInput>
-                    <C.VarianteInput required id="number" type="text" />
                     <Label>Número</Label>
+                    <C.VarianteInput
+                        placeholder="123"
+                        required
+                        id="number"
+                        type="text"
+                    />
+                    <TI.TextInformation>Somente números.</TI.TextInformation>
                 </C.BoxInput>
 
                 <C.BoxInput>
-                    <C.VarianteInput2 id="complement" type="text" />
                     <Label>Complemento</Label>
+                    <C.VarianteInput
+                        placeholder="Apto, casa x ou uma referência"
+                        id="complement"
+                        type="text"
+                    />
+                    <TI.TextInformation>
+                        Esse campo é opcional.
+                    </TI.TextInformation>
                 </C.BoxInput>
             </C.BoxInputs>
         </>

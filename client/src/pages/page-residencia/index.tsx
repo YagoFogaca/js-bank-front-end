@@ -30,7 +30,7 @@ export function PageResidential() {
     return (
         <>
             <CardRegistration>
-                <Text>Insira suas informações residenciais</Text>
+                <Text>Agora é seu endereço.</Text>
                 <form onSubmit={handleSubmit}>
                     <AddressInformation />
                     <BoxBtns>
