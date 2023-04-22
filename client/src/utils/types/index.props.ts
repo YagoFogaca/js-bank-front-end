@@ -23,9 +23,10 @@ export type ResViaCep = {
 export type WebCamProps = {
     renderImg: boolean;
     imgUrl: string;
-    validImg: boolean;
+    imgCheck: boolean;
     setImgUrl: (dataUri: string) => void;
     setRenderImg: (img: boolean) => void;
+    setImgCheck: (imgCheck: boolean) => void;
     handleSubmit: () => void;
 };
 
