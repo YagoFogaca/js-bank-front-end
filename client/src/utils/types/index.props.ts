@@ -30,10 +30,19 @@ export type WebCamProps = {
     handleSubmit: () => void;
 };
 
-export type PropsPersonalInformation = {
+export type PropsInformation = {
     textFullName?: string;
     textBirthDate?: string;
     textPhoneNumber?: string;
-    disabledBtn: any;
+    disabledBtn?: any;
     setDisabledBtn: (value: any) => void;
+};
+
+export type PropsAddress = {
+    zipCode?: string;
+    state?: string;
+    city?: string;
+    street?: string;
+    number?: string;
+    complement?: string;
 };

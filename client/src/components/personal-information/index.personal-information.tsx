@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PropsPersonalInformation } from '../../utils/types/index.props';
+import { PropsInformation } from '../../utils/types/index.props';
 import { Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import * as TI from '../../styled-components/text-information/index.text';
@@ -11,7 +11,7 @@ export function PersonalInformation({
     textPhoneNumber,
     disabledBtn,
     setDisabledBtn,
-}: PropsPersonalInformation) {
+}: PropsInformation) {
     const [errorFullName, setErrorFullName] = useState(false);
     const [errorBirthDate, setBirthDate] = useState(false);
     const [errorPhoneNumber, setPhoneNumber] = useState(false);

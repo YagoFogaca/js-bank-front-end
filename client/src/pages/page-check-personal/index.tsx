@@ -1,58 +1,69 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
-import { Text } from '../../styled-components/text-information/index.text';
-import * as C from '../../styled-components/btns/index.btn';
-import * as I from '../../styled-components/inputs/index.input';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
-import {
-    SpanError,
-    VarianteSpanError,
-} from '../../styled-components/span/index.span';
+import { Text } from '../../styled-components/text-information/index.text';
 import { BoxInput, Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import { PersonalInformation } from '../../components/personal-information/index.personal-information';
 import { AddressInformation } from '../../components/address-information/index.address-information';
+import * as C from '../../styled-components/btns/index.btn';
 
 export function PageCheckPersonal() {
+    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate();
     const [disabledBtn, setDisabledBtn] = useState({
         fullName: true,
         birthDate: true,
         phoneNumber: true,
     });
-    const { user, setUser } = useContext(UserContext);
-    const navigate = useNavigate();
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const fullName = event.currentTarget.fullName.value;
-        const birthDate = event.currentTarget.birthDate.value;
-        const phoneNumber = event.currentTarget.phoneNumber.value;
-        console.log(fullName);
-        console.log(birthDate);
-        console.log(phoneNumber);
-        // setUser({ ...user, fullName, phoneNumber, birthDate });
-        // navigate('/email');
+        console.log({
+            documentNumber: event.currentTarget.documentNumber.value,
+            fullName: event.currentTarget.fullName.value,
+            birthDate: event.currentTarget.birthDate.value,
+            phoneNumber: event.currentTarget.phoneNumber.value,
+            street: event.currentTarget.street.value,
+            number: event.currentTarget.number.value,
+            complement: event.currentTarget.complement.value,
+            city: event.currentTarget.city.value,
+            state: event.currentTarget.state.value,
+            zipCode: event.currentTarget.zipCode.value,
+        });
+        // homeAddress: `${event.currentTarget.city.value}, ${
+        //     event.currentTarget.state.value
+        // }, ${event.currentTarget.street.value}, ${
+        //     event.currentTarget.number.value
+        // }${
+        //     event.currentTarget.complement.value
+        //         ? ', ' + event.currentTarget.complement.value
+        //         : ''
+        // }`,
     };
+
     return (
         <CardRegistration>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <Text>Confirme suas informações pessoais</Text>
-                <VarianteSpanError visible={false}>
-                    'validateDocumentNumber.message'
-                </VarianteSpanError>
 
                 <BoxInput>
+                    <Label>CPF</Label>
                     <Input
                         // defaultValue={textPhoneNumber}
+                        placeholder="000.000.000-00"
                         required
-                        id="phoneNumber"
+                        id="documentNumber"
+                        autoComplete="off"
                     />
-                    <Label>CPF</Label>
-                    <SpanError visible={false}>Telefone inválido</SpanError>
                 </BoxInput>
 
                 <PersonalInformation
+                    textBirthDate={user.birthDate}
+                    textFullName={user.fullName}
+                    textPhoneNumber={user.phoneNumber}
                     setDisabledBtn={setDisabledBtn}
                     disabledBtn={disabledBtn}
                 />
@@ -61,16 +72,19 @@ export function PageCheckPersonal() {
                 <AddressInformation />
 
                 <C.BoxBtns>
-                    <C.Btn>Seguir</C.Btn>
+                    <C.Btn
+                        disabled={
+                            !(
+                                !disabledBtn.fullName &&
+                                !disabledBtn.birthDate &&
+                                !disabledBtn.phoneNumber
+                            )
+                        }
+                    >
+                        Seguir
+                    </C.Btn>
                 </C.BoxBtns>
             </form>
         </CardRegistration>
-        // <PersonalInformation
-        //     handleSubmit={handleSubmit}
-        //     textFullName={user.fullName}
-        //     textBirthDate={user.birthDate}
-        //     textPhoneNumber={user.phoneNumber}
-        //     textBtn="Conferir"
-        // />
     );
 }

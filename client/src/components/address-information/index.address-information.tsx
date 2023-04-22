@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import { ViaCep } from '../../utils/via-cep';
-import { ResViaCep } from '../../utils/types/index.props';
+import { PropsAddress, ResViaCep } from '../../utils/types/index.props';
 import { Label } from '../../styled-components/label/index.label';
 import * as C from '../../styled-components/inputs/index.input';
 import * as TI from '../../styled-components/text-information/index.text';
 import * as TE from '../../styled-components/span/index.span';
 
-// Receber o cep e chamar pela api
-export function AddressInformation() {
+export function AddressInformation({
+    city,
+    complement,
+    number,
+    state,
+    street,
+    zipCode,
+}: PropsAddress) {
     const [addressData, setAddressData] = useState<ResViaCep>();
     const [errorCep, setErrorCep] = useState(false);
     const [addressDataCheck, setAddressDataCheck] = useState(false);
@@ -40,6 +46,7 @@ export function AddressInformation() {
             <C.BoxInput>
                 <Label>CEP</Label>
                 <C.Input
+                    defaultValue={zipCode}
                     required
                     className={addressDataCheck ? 'error' : ''}
                     placeholder="00000000"
@@ -66,7 +73,7 @@ export function AddressInformation() {
                         required
                         id="state"
                         type="text"
-                        defaultValue={addressData?.uf}
+                        defaultValue={addressData?.uf ?? state}
                     />
                 </C.BoxInput>
 
@@ -77,7 +84,7 @@ export function AddressInformation() {
                         required
                         id="city"
                         type="text"
-                        defaultValue={addressData?.localidade}
+                        defaultValue={addressData?.localidade ?? city}
                     />
                 </C.BoxInput>
             </C.BoxInputs>
@@ -89,7 +96,7 @@ export function AddressInformation() {
                     required
                     id="street"
                     type="text"
-                    defaultValue={addressData?.logradouro}
+                    defaultValue={addressData?.logradouro ?? street}
                 />
             </C.BoxInput>
 
@@ -101,6 +108,7 @@ export function AddressInformation() {
                         required
                         id="number"
                         type="text"
+                        defaultValue={number}
                     />
                     <TI.TextInformation>Somente números.</TI.TextInformation>
                 </C.BoxInput>
@@ -111,6 +119,7 @@ export function AddressInformation() {
                         placeholder="Apto, casa x ou uma referência"
                         id="complement"
                         type="text"
+                        defaultValue={complement}
                     />
                     <TI.TextInformation>
                         Esse campo é opcional.
