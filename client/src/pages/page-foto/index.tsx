@@ -1,21 +1,18 @@
 import { useContext, useState } from 'react';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
 import { Btn } from '../../styled-components/btns/index.btn';
-import { Text } from '../../styled-components/text-information/index.text';
 import { UserContext } from '../../contexts/user.context';
 import { useNavigate } from 'react-router-dom';
 import { WebCam } from '../../components/webcam/index.webcam';
 import { Api } from '../../utils/api/api';
-import { ValidateInfos } from '../../utils/types/index.props';
+import * as TI from '../../styled-components/text-information/index.text';
 
 export function PagePhoto() {
-    const [showConfirm, setShowConfirm] = useState<ValidateInfos>({
-        message: '',
-        valid: true,
-    });
+    const [showConfirm, setShowConfirm] = useState(true);
+    const [imgCheck, setImgCheck] = useState(false);
     const [renderImg, setRenderImg] = useState(false);
     const [imgUrl, setImgUrl] = useState('');
-    const { user, setUser } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleSubmit = async () => {
@@ -27,31 +24,23 @@ export function PagePhoto() {
             navigate('/check-information/');
         } catch (error) {
             console.log(error);
-            setShowConfirm({
-                message:
-                    'Ocorreu um error ao processar a sua foto. Tire outra!',
-                valid: false,
-            });
+            setImgCheck(true);
             setRenderImg(false);
         }
     };
 
     return (
         <CardRegistration>
-            {showConfirm.valid ? (
+            {showConfirm ? (
                 <>
-                    <Text>
-                        Vamos pedir algumas fotos para você, as fotos
-                        necessárias são de um documento com foto, seja RG ou CNH
-                        e do seu rosto.
-                    </Text>
+                    <TI.Text>
+                        Agora é hora de algumas fotos, vamos precisar de um
+                        documento com foto e do seu rosto. Mas fique tranquilo,
+                        essas fotos são serão divulgadas.
+                    </TI.Text>
                     <Btn
                         onClick={() => {
-                            setShowConfirm({
-                                message:
-                                    'Certifique-se que a foto esteja adequada',
-                                valid: false,
-                            });
+                            setShowConfirm(false);
                         }}
                     >
                         Seguir
@@ -59,11 +48,12 @@ export function PagePhoto() {
                 </>
             ) : (
                 <WebCam
-                    text={showConfirm.message}
+                    imgCheck={imgCheck}
                     renderImg={renderImg}
                     imgUrl={imgUrl}
                     setRenderImg={setRenderImg}
                     setImgUrl={setImgUrl}
+                    setImgCheck={setImgCheck}
                     handleSubmit={handleSubmit}
                 />
             )}

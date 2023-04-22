@@ -12,11 +12,6 @@ export type PropsVarianteButton = {
     color?: string;
 };
 
-export type ValidateInfos = {
-    valid: boolean;
-    message: string;
-};
-
 export type ResViaCep = {
     cep: string;
     logradouro: string;
@@ -26,9 +21,9 @@ export type ResViaCep = {
 };
 
 export type WebCamProps = {
-    text: string;
     renderImg: boolean;
     imgUrl: string;
+    validImg: boolean;
     setImgUrl: (dataUri: string) => void;
     setRenderImg: (img: boolean) => void;
     handleSubmit: () => void;
