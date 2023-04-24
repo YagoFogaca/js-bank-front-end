@@ -8,6 +8,7 @@ import { Label } from '../../styled-components/label/index.label';
 import { PersonalInformation } from '../../components/personal-information/index.personal-information';
 import { AddressInformation } from '../../components/address-information/index.address-information';
 import * as C from '../../styled-components/btns/index.btn';
+import { Api } from '../../utils/api/api';
 
 export function PageCheckPersonal() {
     const { user, setUser } = useContext(UserContext);

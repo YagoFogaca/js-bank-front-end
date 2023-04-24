@@ -2,7 +2,7 @@ import axios from 'axios';
 import { UserContextType } from '../types/index.context';
 
 axios.defaults.baseURL = 'https://jsbank-back-end.onrender.com';
-axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export class Api {
     static async findDocumentNumber(documentNumber: string | undefined) {
@@ -24,7 +24,11 @@ export class Api {
         documentNumber: string;
         image: any;
     }) {
-        return (await axios.post(`/faces/register`, data)).data;
+        return (
+            await axios.post(`/faces/register`, data, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            })
+        ).data;
     }
 
     static async createUser(data: UserContextType) {
