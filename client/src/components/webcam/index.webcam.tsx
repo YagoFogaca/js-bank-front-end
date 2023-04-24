@@ -1,4 +1,6 @@
 import { WebCamProps } from '../../utils/types/index.props';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/user.context';
 import Camera from 'react-html5-camera-photo';
 import { Img } from './style.webcam';
 import * as C from '../../styled-components/btns/index.btn';
@@ -9,18 +11,34 @@ import 'react-html5-camera-photo/build/css/index.css';
 
 export function WebCam({
     imgCheck,
-    imgUrl,
+    img,
     renderImg,
-    handleSubmit,
+    imgUrl,
     setImgUrl,
+    handleSubmit,
+    setImg,
     setImgCheck,
     setRenderImg,
 }: WebCamProps) {
     function handleTakePhoto(dataUri: string) {
+        const byteCharacters = atob(dataUri.split(',')[1]);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const file = new File([byteArray], 'image.png', {
+            type: 'image/png',
+        });
+
+        const formData = new FormData();
+        formData.append('image', file);
+
         if (imgCheck) {
             setImgCheck(false);
         }
         setImgUrl(dataUri);
+        setImg(formData.getAll('image')[0]);
         setRenderImg(true);
     }
 
