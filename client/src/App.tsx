@@ -2,11 +2,11 @@ import { GlobalStyle } from './global.style';
 import { ContextProvider } from './contexts/user.context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PageCpf } from './pages/page-cpf';
-import { PagePersonalInformation } from './pages/page-informacoes';
+import { PagePersonalInformation } from './pages/page-personal-information';
 import { PageEmail } from './pages/page-email';
 import { PageVerifyEmail } from './pages/page-verify-email';
-import { PageResidential } from './pages/page-residencia';
-import { PagePhoto } from './pages/page-foto';
+import { PageResidential } from './pages/page-residential-information';
+import { PagePhoto } from './pages/page-photo';
 import { RoutesCheckInformation } from './routes/index.routes.check-information';
 import { CreateAccount } from './pages/page-create-account';
 
