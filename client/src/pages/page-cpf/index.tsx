@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
 import { Api } from '../../utils/api/api';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
+import { Loading } from '../../components/loading/index.loading';
 import * as TI from '../../styled-components/text-information/index.text';
 import * as TE from '../../styled-components/span/index.span';
 import { Label } from '../../styled-components/label/index.label';
@@ -12,6 +13,7 @@ import * as B from '../../styled-components/btns/index.btn';
 export function PageCpf() {
     const navigate = useNavigate();
     const { user, setUser } = useContext(UserContext);
+    const [loading, setLoading] = useState(false);
     const [disabledBtn, setDisabledBtn] = useState(true);
     const [documentNumberCheck, setDocumentNumberCheck] = useState(false);
     const [validateDocumentNumber, setValidateDocumentNumber] = useState(false);
@@ -21,11 +23,14 @@ export function PageCpf() {
         const documentNumber = event.currentTarget.documentNumber.value;
 
         try {
+            setLoading(true);
             await Api.findDocumentNumber(documentNumber);
             setUser({ ...user, documentNumber });
+            setLoading(false);
             navigate('/personal-information');
         } catch (error) {
             console.log(error);
+            setLoading(false);
             setValidateDocumentNumber(true);
         }
     };
@@ -48,43 +53,53 @@ export function PageCpf() {
     return (
         <>
             <CardRegistration>
-                {validateDocumentNumber ? (
-                    <TE.TextErrorVariante>
-                        CPF já cadastrado
-                    </TE.TextErrorVariante>
+                {loading ? (
+                    <Loading />
                 ) : (
-                    <TI.Text>Informe seu CPF para a gente começar</TI.Text>
-                )}
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <Label>CPF</Label>
-                        <Input
-                            className={documentNumberCheck ? 'error' : ''}
-                            placeholder="000.000.000-00"
-                            required
-                            name="documentNumber"
-                            onChange={handleDocumentNumberChange}
-                        />
-                    </div>
+                    <>
+                        {validateDocumentNumber ? (
+                            <TE.TextErrorVariante>
+                                CPF já cadastrado
+                            </TE.TextErrorVariante>
+                        ) : (
+                            <TI.Text>
+                                Informe seu CPF para a gente começar
+                            </TI.Text>
+                        )}
+                        <form onSubmit={handleSubmit}>
+                            <div>
+                                <Label>CPF</Label>
+                                <Input
+                                    className={
+                                        documentNumberCheck ? 'error' : ''
+                                    }
+                                    placeholder="000.000.000-00"
+                                    required
+                                    name="documentNumber"
+                                    onChange={handleDocumentNumberChange}
+                                />
+                            </div>
 
-                    {documentNumberCheck ? (
-                        <TE.TextError visible={documentNumberCheck}>
-                            Seu CPF é invalido
-                        </TE.TextError>
-                    ) : (
-                        <TI.TextInformation>
-                            Somente números, sem ponto e traço.
-                        </TI.TextInformation>
-                    )}
-                    <B.BoxBtns>
-                        <B.Btn
-                            disabled={disabledBtn}
-                            className={disabledBtn ? 'error' : ''}
-                        >
-                            Seguir
-                        </B.Btn>
-                    </B.BoxBtns>
-                </form>
+                            {documentNumberCheck ? (
+                                <TE.TextError visible={documentNumberCheck}>
+                                    Seu CPF é invalido
+                                </TE.TextError>
+                            ) : (
+                                <TI.TextInformation>
+                                    Somente números, sem ponto e traço.
+                                </TI.TextInformation>
+                            )}
+                            <B.BoxBtns>
+                                <B.Btn
+                                    disabled={disabledBtn}
+                                    className={disabledBtn ? 'error' : ''}
+                                >
+                                    Seguir
+                                </B.Btn>
+                            </B.BoxBtns>
+                        </form>
+                    </>
+                )}
             </CardRegistration>
         </>
     );

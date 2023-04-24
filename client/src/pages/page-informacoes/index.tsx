@@ -20,7 +20,6 @@ export function PagePersonalInformation() {
         const fullName = event.currentTarget.fullName.value;
         const birthDate = event.currentTarget.birthDate.value;
         const phoneNumber = event.currentTarget.phoneNumber.value;
-        console.log(fullName, birthDate, phoneNumber);
         setUser({ ...user, fullName, phoneNumber, birthDate });
         navigate('/email');
     };
