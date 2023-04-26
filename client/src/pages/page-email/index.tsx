@@ -54,16 +54,16 @@ export function PageEmail() {
                     <>
                         {validateEmail ? (
                             <TE.TextErrorVariante>
-                                O E-mail já está registrado!
+                                E-mail inválido!
                             </TE.TextErrorVariante>
                         ) : (
-                            <TI.Text>Agora é a hora do seu E-mail</TI.Text>
+                            <TI.Text>Agora é a hora do seu e-mail</TI.Text>
                         )}
                         <form onSubmit={handleSubmit}>
                             <div>
                                 <Label>E-mail</Label>
                                 <Input
-                                    placeholder="jsbank@jsbank.com"
+                                    placeholder="jsbank@email.com"
                                     required
                                     id="emailAddress"
                                     type="email"

@@ -10,6 +10,9 @@ import { PagePhoto } from './pages/page-photo';
 import { RoutesCheckInformation } from './routes/index.routes.check-information';
 import { CreateAccount } from './pages/page-create-account';
 import { PagePassword } from './pages/page-password';
+import { PageLoginCpf } from './pages/page-login-cpf';
+import { PageLoginPassword } from './pages/page-login-password';
+import { PageLoginPhoto } from './pages/page-login-photo';
 
 export function App() {
     return (
@@ -44,6 +47,18 @@ export function App() {
                         <Route
                             path="/create-account"
                             element={<CreateAccount />}
+                        />
+                        <Route
+                            path="/login-cpf"
+                            element={<PageLoginCpf />}
+                        />
+                        <Route
+                            path="/login-password"
+                            element={<PageLoginPassword />}
+                        />
+                        <Route
+                            path="/login-photo"
+                            element={<PageLoginPhoto />}
                         />
                     </Routes>
                 </ContextProvider>

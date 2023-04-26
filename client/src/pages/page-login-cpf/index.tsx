@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../../contexts/user.context';
 import { Api } from '../../utils/api/api';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
 import { Loading } from '../../components/loading/index.loading';
@@ -10,13 +9,12 @@ import { Label } from '../../styled-components/label/index.label';
 import { Input } from '../../styled-components/inputs/index.input';
 import * as B from '../../styled-components/btns/index.btn';
 
-export function PageCpf() {
+export function PageLoginCpf() {
     const navigate = useNavigate();
-    const { user, setUser } = useContext(UserContext);
     const [loading, setLoading] = useState(false);
     const [disabledBtn, setDisabledBtn] = useState(true);
     const [documentNumberCheck, setDocumentNumberCheck] = useState(false);
-    const [validateDocumentNumber, setValidateDocumentNumber] = useState(false);
+    const [validateDocumentNumber, setValidateDocumentNumber] = useState(true);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -25,13 +23,12 @@ export function PageCpf() {
         try {
             setLoading(true);
             await Api.findDocumentNumber(documentNumber);
-            setUser({ ...user, documentNumber });
             setLoading(false);
-            navigate('/personal-information');
+            setValidateDocumentNumber(false);
         } catch (error) {
-            console.log(error);
+            localStorage.setItem('documentNumber', documentNumber);
             setLoading(false);
-            setValidateDocumentNumber(true);
+            navigate('/login-password');
         }
     };
 
@@ -57,13 +54,13 @@ export function PageCpf() {
                     <Loading />
                 ) : (
                     <>
-                        {validateDocumentNumber ? (
+                        {!validateDocumentNumber ? (
                             <TE.TextErrorVariante>
-                                CPF inválido!
+                                Usuário não autorizado!
                             </TE.TextErrorVariante>
                         ) : (
                             <TI.Text>
-                                Informe seu CPF para a gente começar
+                                Informe seu CPF para a acessar a sua conta!
                             </TI.Text>
                         )}
                         <form onSubmit={handleSubmit}>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
 import * as T from '../../styled-components/text-information/index.text';
@@ -7,9 +7,12 @@ import { Input } from '../../styled-components/inputs/index.input';
 import { TextError } from '../../styled-components/span/index.span';
 import { Ol } from '../../styled-components/list/index.list';
 import * as C from '../../styled-components/btns/index.btn';
+import { UserContext } from '../../contexts/user.context';
 
 export function PagePassword() {
     const navigate = useNavigate();
+    const { user, setUser } = useContext(UserContext);
+    const [disabledBtn, setDisabledBtn] = useState(true);
     const [accessPasswordCheck, setAccessPasswordCheck] = useState(false);
     const [accessPasswordCompare, setAccessPasswordCompare] = useState(false);
     const [password, setPassword] = useState('');
@@ -17,7 +20,7 @@ export function PagePassword() {
     const handlePasswordChange = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
+        const regex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[^\da-zA-Z]).{8,}$/;
         if (!regex.test(event.currentTarget.value)) {
             setAccessPasswordCheck(true);
         } else {
@@ -32,12 +35,15 @@ export function PagePassword() {
         if (event.currentTarget.value !== password) {
             setAccessPasswordCompare(true);
         } else {
+            setDisabledBtn(false);
             setAccessPasswordCompare(false);
         }
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        setUser({ ...user, accessPassword: password });
 
         navigate('/create-account');
     };
@@ -71,7 +77,7 @@ export function PagePassword() {
                     <Label>Confirme sua senha</Label>
                     <Input
                         required
-                        placeholder="*******"
+                        placeholder="***"
                         type="password"
                         id="confirmAccessPassword"
                         autoComplete="off"
@@ -100,14 +106,8 @@ export function PagePassword() {
                 </div>
                 <C.BoxBtns>
                     <C.Btn
-                        disabled={
-                            !(!accessPasswordCheck && !accessPasswordCompare)
-                        }
-                        className={
-                            !(!accessPasswordCheck && !accessPasswordCompare)
-                                ? 'error'
-                                : ''
-                        }
+                        disabled={disabledBtn}
+                        className={disabledBtn ? 'error' : ''}
                     >
                         Seguir
                     </C.Btn>

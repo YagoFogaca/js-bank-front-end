@@ -34,4 +34,22 @@ export class Api {
     static async createUser(data: UserContextType) {
         return (await axios.post('/accounts', data)).data;
     }
+
+    static async signIn(data: {
+        documentNumber: string | null;
+        accessPassword: string;
+    }) {
+        return (await axios.post('/signin', data)).data;
+    }
+
+    static async faceAuthentication(data: {
+        documentNumber: string | null;
+        image: any;
+    }) {
+        return (
+            await axios.post(`/faces/authenticate`, data, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            })
+        ).data;
+    }
 }
