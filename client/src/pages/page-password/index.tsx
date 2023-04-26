@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CardRegistration } from '../../components/card-registration/index.card-registration';
 import * as T from '../../styled-components/text-information/index.text';
 import { Label } from '../../styled-components/label/index.label';
@@ -8,6 +9,7 @@ import { Ol } from '../../styled-components/list/index.list';
 import * as C from '../../styled-components/btns/index.btn';
 
 export function PagePassword() {
+    const navigate = useNavigate();
     const [accessPasswordCheck, setAccessPasswordCheck] = useState(false);
     const [accessPasswordCompare, setAccessPasswordCompare] = useState(false);
     const [password, setPassword] = useState('');
@@ -34,10 +36,16 @@ export function PagePassword() {
         }
     };
 
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        navigate('/create-account');
+    };
+
     return (
         <CardRegistration>
             <T.Text>Agora crie uma senha para acessar o aplicativo</T.Text>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <Label>Senha</Label>
                     <Input

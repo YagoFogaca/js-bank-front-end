@@ -24,20 +24,7 @@ export function PageCheckPersonal() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        console.log({
-            documentNumber: event.currentTarget.documentNumber.value,
-            fullName: event.currentTarget.fullName.value,
-            birthDate: event.currentTarget.birthDate.value,
-            phoneNumber: event.currentTarget.phoneNumber.value,
-            street: event.currentTarget.street.value,
-            number: event.currentTarget.number.value,
-            complement: event.currentTarget.complement.value,
-            city: event.currentTarget.city.value,
-            state: event.currentTarget.state.value,
-            zipCode: event.currentTarget.zipCode.value,
-        });
-
-        navigate('/create-account');
+        navigate('/password');
     };
 
     return (
