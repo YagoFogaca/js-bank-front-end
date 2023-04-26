@@ -7,6 +7,7 @@ import { WebCam } from '../../components/webcam/index.webcam';
 import { Api } from '../../utils/api/api';
 import * as TI from '../../styled-components/text-information/index.text';
 import { PropsUseStateImg } from '../../utils/types/index.props';
+import { Loading } from '../../components/loading/index.loading';
 
 export function PagePhoto() {
     const { user } = useContext(UserContext);
@@ -15,10 +16,12 @@ export function PagePhoto() {
     const [renderImg, setRenderImg] = useState(false);
     const [img, setImg] = useState<PropsUseStateImg | any>({});
     const [imgUrl, setImgUrl] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async () => {
         try {
+            setLoading(true);
             await Api.faceRegistration({
                 documentNumber: user.documentNumber,
                 image: img,
@@ -48,6 +51,8 @@ export function PagePhoto() {
                         Seguir
                     </Btn>
                 </>
+            ) : loading ? (
+                <Loading />
             ) : (
                 <WebCam
                     imgCheck={imgCheck}
