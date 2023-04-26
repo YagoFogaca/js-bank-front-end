@@ -14,3 +14,7 @@ export const VarianteText = styled(Text)`
     font-size: 19px;
     text-align: center;
 `;
+
+export const VarianteTextInformation = styled(TextInformation)`
+    font-size: 14px;
+`;

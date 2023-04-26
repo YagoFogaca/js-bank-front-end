@@ -9,6 +9,7 @@ import { PageResidential } from './pages/page-residential-information';
 import { PagePhoto } from './pages/page-photo';
 import { RoutesCheckInformation } from './routes/index.routes.check-information';
 import { CreateAccount } from './pages/page-create-account';
+import { PagePassword } from './pages/page-password';
 
 export function App() {
     return (
@@ -36,6 +37,10 @@ export function App() {
                             path="/check-information/*"
                             element={<RoutesCheckInformation />}
                         />
+                        <Route
+                            path="/password"
+                            element={<PagePassword />}
+                        ></Route>
                         <Route
                             path="/create-account"
                             element={<CreateAccount />}
