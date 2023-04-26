@@ -12,9 +12,12 @@ export const GlobalStyle = createGlobalStyle`
     #root {
         width: 100%;
         min-height: 100vh;
-        padding: 10px 0;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    #root {
+        padding: 10px 0;
     }
 `;
