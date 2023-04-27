@@ -15,20 +15,24 @@ export function PageLoginCpf() {
     const [disabledBtn, setDisabledBtn] = useState(true);
     const [documentNumberCheck, setDocumentNumberCheck] = useState(false);
     const [validateDocumentNumber, setValidateDocumentNumber] = useState(true);
+    const [accessPasswordCheck, setAccessPasswordCheck] = useState(false);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const documentNumber = event.currentTarget.documentNumber.value;
+        const data = {
+            documentNumber: event.currentTarget.documentNumber.value,
+            accessPassword: event.currentTarget.accessPassword.value,
+        };
 
         try {
             setLoading(true);
-            await Api.findDocumentNumber(documentNumber);
+            const { access_token } = await Api.signIn(data);
+            localStorage.setItem('documentNumber', data.documentNumber);
+            localStorage.setItem('access_token', access_token);
+            navigate('/platform/login-photo');
+        } catch (error) {
             setLoading(false);
             setValidateDocumentNumber(false);
-        } catch (error) {
-            localStorage.setItem('documentNumber', documentNumber);
-            setLoading(false);
-            navigate('/platform/login-password');
         }
     };
 
@@ -47,6 +51,17 @@ export function PageLoginCpf() {
         }
     };
 
+    const handlePasswordChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
+        if (!regex.test(event.currentTarget.value)) {
+            setAccessPasswordCheck(true);
+        } else {
+            setAccessPasswordCheck(false);
+        }
+    };
+
     return (
         <>
             <CardRegistration>
@@ -56,7 +71,7 @@ export function PageLoginCpf() {
                     <>
                         {!validateDocumentNumber ? (
                             <TE.TextErrorVariante>
-                                Usuário não autorizado!
+                                CPF ou senha inválidos.
                             </TE.TextErrorVariante>
                         ) : (
                             <TI.Text>
@@ -75,17 +90,40 @@ export function PageLoginCpf() {
                                     name="documentNumber"
                                     onChange={handleDocumentNumberChange}
                                 />
+                                {documentNumberCheck ? (
+                                    <TE.TextError visible={documentNumberCheck}>
+                                        Seu CPF é invalido
+                                    </TE.TextError>
+                                ) : (
+                                    <TI.TextInformation>
+                                        Somente números, sem ponto e traço.
+                                    </TI.TextInformation>
+                                )}
                             </div>
 
-                            {documentNumberCheck ? (
-                                <TE.TextError visible={documentNumberCheck}>
-                                    Seu CPF é invalido
-                                </TE.TextError>
-                            ) : (
-                                <TI.TextInformation>
-                                    Somente números, sem ponto e traço.
-                                </TI.TextInformation>
-                            )}
+                            <div>
+                                <Label>Senha</Label>
+                                <Input
+                                    required
+                                    placeholder="Informe sua senha"
+                                    type="password"
+                                    id="accessPassword"
+                                    autoComplete="off"
+                                    className={
+                                        accessPasswordCheck ? 'error' : ''
+                                    }
+                                    onChange={handlePasswordChange}
+                                />
+
+                                {accessPasswordCheck ? (
+                                    <TE.TextError visible={accessPasswordCheck}>
+                                        Sua senha é invalida
+                                    </TE.TextError>
+                                ) : (
+                                    <></>
+                                )}
+                            </div>
+
                             <B.BoxBtns>
                                 <B.Btn
                                     disabled={disabledBtn}
