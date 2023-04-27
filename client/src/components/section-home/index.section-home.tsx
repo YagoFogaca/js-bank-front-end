@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import * as C from './style.section-home';
 
 export function SectionHome() {
@@ -21,7 +22,9 @@ export function SectionHome() {
                             J<C.SpanLogoVariant>S</C.SpanLogoVariant>Bank
                         </C.SpanLogo>
                     </C.H6>
-                    <C.Btn>Começar</C.Btn>
+                    <Link to={'/create-account/'}>
+                        <C.Btn>Começar</C.Btn>
+                    </Link>
                 </C.SectionCard>
             </C.Section>
         </>

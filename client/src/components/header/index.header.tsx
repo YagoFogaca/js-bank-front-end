@@ -4,12 +4,12 @@ import { HeaderStyle, ImgLogo, SpanOption, UlMenu } from './style.header';
 export function Header() {
     return (
         <HeaderStyle>
-            <Link to={'/home'}>
+            <Link to={'/'}>
                 <ImgLogo src="/logo.svg" alt="" />
             </Link>
             <UlMenu>
                 <li>
-                    <Link to="home">
+                    <Link to="/platform/">
                         <SpanOption>Login</SpanOption>
                     </Link>
                 </li>
