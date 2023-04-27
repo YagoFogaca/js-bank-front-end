@@ -29,6 +29,7 @@ export function PagePhoto() {
             navigate('/create-account/check-information/');
         } catch (error) {
             console.log(error);
+            setLoading(false);
             setImgCheck(true);
             setRenderImg(false);
         }

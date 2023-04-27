@@ -29,6 +29,7 @@ export function PageLoginPhoto() {
             setLoading(false);
             navigate('/platform/app');
         } catch (error) {
+            setLoading(false);
             setImgCheck(true);
             setRenderImg(false);
         }
