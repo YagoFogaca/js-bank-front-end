@@ -20,7 +20,7 @@ export function PagePassword() {
     const handlePasswordChange = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
-        const regex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[^\da-zA-Z]).{8,}$/;
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/;
         if (!regex.test(event.currentTarget.value)) {
             setAccessPasswordCheck(true);
         } else {
@@ -43,7 +43,10 @@ export function PagePassword() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        setUser({ ...user, accessPassword: password });
+        setUser({
+            ...user,
+            accessPassword: password,
+        });
 
         navigate('/create-account');
     };
