@@ -27,7 +27,7 @@ export function PageLoginPhoto() {
                 image: img,
             });
             setLoading(false);
-            navigate('/platform');
+            navigate('/platform/app');
         } catch (error) {
             setImgCheck(true);
             setRenderImg(false);
@@ -38,9 +38,7 @@ export function PageLoginPhoto() {
         <CardRegistration>
             {showConfirm ? (
                 <>
-                    <TI.Text>
-                        Confirme sua identidade com uma foto
-                    </TI.Text>
+                    <TI.Text>Confirme sua identidade com uma foto</TI.Text>
                     <Btn
                         onClick={() => {
                             setShowConfirm(false);

@@ -27,7 +27,7 @@ export function PageCpf() {
             await Api.findDocumentNumber(documentNumber);
             setUser({ ...user, documentNumber });
             setLoading(false);
-            navigate('/personal-information');
+            navigate('personal-information');
         } catch (error) {
             console.log(error);
             setLoading(false);

@@ -24,7 +24,7 @@ export function PageResidential() {
             complement ? ', ' + complement : ''
         }`;
         setUser({ ...user, homeAddress, zipCode });
-        navigate('/photo');
+        navigate('/create-account/photo');
     };
 
     return (

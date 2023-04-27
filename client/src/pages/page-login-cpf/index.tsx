@@ -28,7 +28,7 @@ export function PageLoginCpf() {
         } catch (error) {
             localStorage.setItem('documentNumber', documentNumber);
             setLoading(false);
-            navigate('/login-password');
+            navigate('/platform/login-password');
         }
     };
 

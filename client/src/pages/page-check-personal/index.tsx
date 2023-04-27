@@ -24,7 +24,7 @@ export function PageCheckPersonal() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        navigate('/password');
+        navigate('/create-account/password');
     };
 
     return (

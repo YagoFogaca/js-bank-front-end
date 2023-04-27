@@ -26,7 +26,7 @@ export function PagePhoto() {
                 documentNumber: user.documentNumber,
                 image: img,
             });
-            navigate('/check-information/');
+            navigate('/create-account/check-information/');
         } catch (error) {
             console.log(error);
             setImgCheck(true);

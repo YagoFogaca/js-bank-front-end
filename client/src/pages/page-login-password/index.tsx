@@ -11,7 +11,8 @@ import { Api } from '../../utils/api/api';
 export function PageLoginPassword() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const [accessPasswordIncorrect, setAccessPasswordIncorrect] = useState(false);
+    const [accessPasswordIncorrect, setAccessPasswordIncorrect] =
+        useState(false);
     const [accessPasswordCheck, setAccessPasswordCheck] = useState(false);
     const [password, setPassword] = useState('');
 
@@ -30,19 +31,19 @@ export function PageLoginPassword() {
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault(); 
+        event.preventDefault();
 
         const data = {
             documentNumber: localStorage.getItem('documentNumber'),
             accessPassword: password,
-        }
+        };
 
         try {
             setLoading(true);
             const { access_token } = await Api.signIn(data);
             localStorage.setItem('access_token', access_token);
             setLoading(false);
-            navigate('/login-photo');
+            navigate('/platform/login-photo');
         } catch (error) {
             setAccessPasswordIncorrect(true);
             setLoading(false);
@@ -82,14 +83,8 @@ export function PageLoginPassword() {
                 </div>
                 <C.BoxBtns>
                     <C.Btn
-                        disabled={
-                            !(!accessPasswordCheck)
-                        }
-                        className={
-                            !(!accessPasswordCheck)
-                                ? 'error'
-                                : ''
-                        }
+                        disabled={!!accessPasswordCheck}
+                        className={!!accessPasswordCheck ? 'error' : ''}
                     >
                         Seguir
                     </C.Btn>

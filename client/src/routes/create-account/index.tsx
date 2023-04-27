@@ -35,9 +35,9 @@ export function RoutesCreateAccount() {
                 element={<RoutesCheckInformation />}
             />
 
-            <Route path="/password" element={<PagePassword />}></Route>
+            <Route path="/password" element={<PagePassword />} />
 
-            <Route path="/create-account" element={<CreateAccount />} />
+            <Route path="/account-checkout" element={<CreateAccount />} />
         </Routes>
     );
 }

@@ -21,7 +21,7 @@ export function PagePersonalInformation() {
         const birthDate = event.currentTarget.birthDate.value;
         const phoneNumber = event.currentTarget.phoneNumber.value;
         setUser({ ...user, fullName, phoneNumber, birthDate });
-        navigate('/email');
+        navigate('/create-account/email');
     };
 
     return (

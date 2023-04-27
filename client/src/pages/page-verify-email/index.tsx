@@ -26,7 +26,7 @@ export function PageVerifyEmail() {
             setLoading(true);
             await Api.verifyEmailCode({ emailAddress, emailCode });
             setLoading(false);
-            navigate('/residential-information');
+            navigate('/create-account/residential-information');
         } catch (error) {
             console.log(error);
             setLoading(false);

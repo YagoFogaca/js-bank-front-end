@@ -26,7 +26,7 @@ export function PageEmail() {
             await Api.sendEmailCode({ emailAddress });
             setUser({ ...user, emailAddress });
             setLoading(false);
-            navigate('/verify-email');
+            navigate('/create-account/verify-email');
         } catch (error) {
             console.log(error);
             setLoading(false);

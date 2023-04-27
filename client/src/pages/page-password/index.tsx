@@ -48,7 +48,7 @@ export function PagePassword() {
             accessPassword: password,
         });
 
-        navigate('/create-account');
+        navigate('/create-account/account-checkout');
     };
 
     return (
