@@ -6,9 +6,11 @@ import { Loading } from '../../components/loading/index.loading';
 import { VarianteText } from '../../styled-components/text-information/index.text';
 import { CgCheck } from 'react-icons/cg';
 import { BiError } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 export function CreateAccount() {
     const { user } = useContext(UserContext);
+    const navigate = useNavigate();
     const [createdAccount, setCreatedAccount] = useState(false);
     const [errorCreatedAccount, setErrorCreatedAccount] = useState(false);
     const [msg, setMsg] = useState(
@@ -20,8 +22,12 @@ export function CreateAccount() {
             await Api.createUser(user);
             setCreatedAccount(true);
             setMsg(
-                'Sua conta foi criada com sucesso. Clique aqui para fazer login.',
+                'Sua conta foi criada com sucesso. Em 5 segundos você será direcionado para fazer login.',
             );
+
+            setTimeout(() => {
+                navigate('/platform/');
+            }, 5000);
         } catch (error) {
             console.log(error);
             setErrorCreatedAccount(true);
