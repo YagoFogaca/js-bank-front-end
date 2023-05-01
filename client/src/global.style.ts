@@ -16,8 +16,4 @@ export const GlobalStyle = createGlobalStyle`
         align-items: center;
         justify-content: center;
     }
-
-    #root {
-        padding: 10px 0;
-    }
 `;

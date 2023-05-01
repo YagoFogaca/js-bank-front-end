@@ -13,6 +13,7 @@ export const SectionRegistration = styled.section`
     box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 10px 0px;
     border-radius: 6px;
     padding: 15px;
+    margin: 10px 0;
 `;
 
 export const DivRegistration = styled.div`
