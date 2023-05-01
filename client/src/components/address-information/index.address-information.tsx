@@ -35,6 +35,7 @@ export function AddressInformation({
 
         if (zipCode.length == 8) {
             setAddressDataCheck(false);
+            setErrorCep(false);
             await viaCep(zipCode);
         } else if (zipCode.length > 8) {
             setAddressDataCheck(true);
