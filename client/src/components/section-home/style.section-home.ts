@@ -14,7 +14,7 @@ export const SectionInfos = styled.section`
     width: 48%;
     max-width: 510px;
     padding: 10px;
-    background-color: #ffffff94;
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
 
     @media (max-width: 582px) {
