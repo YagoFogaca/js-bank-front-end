@@ -12,14 +12,9 @@ export function App() {
             <BrowserRouter>
                 <ContextProvider>
                     <Routes>
-                        <Route
-                            path="*"
-                            element={
-                                <>
-                                    <h1>Teste</h1>
-                                </>
-                            }
-                        />
+                        <Route path="*">
+                            <h1>Teste</h1>
+                        </Route>
                         <Route path="/" element={<PageHome />} />
                         <Route
                             path="/create-account/*"
