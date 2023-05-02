@@ -20,3 +20,10 @@ export const Main = styled.main`
         z-index: -1;
     }
 `;
+
+export const VarianteMain = styled(Main)`
+    &::before {
+        background-image: none;
+        filter: none;
+    }
+`;
