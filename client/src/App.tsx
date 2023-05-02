@@ -12,9 +12,6 @@ export function App() {
             <BrowserRouter>
                 <ContextProvider>
                     <Routes>
-                        <Route path="*">
-                            <h1>Teste</h1>
-                        </Route>
                         <Route path="/" element={<PageHome />} />
                         <Route
                             path="/create-account/*"
