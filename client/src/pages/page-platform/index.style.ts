@@ -8,4 +8,6 @@ export const SectionPlatform = styled.section`
     padding: 15px;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    font-size: 35px;
+    text-align: center;
 `;
