@@ -16,7 +16,9 @@ export function PagePlatform() {
 
                 <VarianteUlMenu>
                     <li>
-                        <VarianteSpanOption>Olá, nome</VarianteSpanOption>
+                        <VarianteSpanOption>
+                            Olá, {localStorage.getItem('full_name') ?? 'Otario'}
+                        </VarianteSpanOption>
                     </li>
                     <li>
                         <button

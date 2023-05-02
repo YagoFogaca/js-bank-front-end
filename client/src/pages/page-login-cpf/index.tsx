@@ -26,9 +26,10 @@ export function PageLoginCpf() {
 
         try {
             setLoading(true);
-            const { access_token } = await Api.signIn(data);
+            const { access_token, full_name } = await Api.signIn(data);
             localStorage.setItem('documentNumber', data.documentNumber);
             localStorage.setItem('access_token', access_token);
+            localStorage.setItem('full_name', full_name);
             navigate('/platform/login-photo');
         } catch (error) {
             setLoading(false);
