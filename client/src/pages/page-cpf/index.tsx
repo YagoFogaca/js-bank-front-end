@@ -9,6 +9,7 @@ import * as TE from '../../styled-components/span/index.span';
 import { Label } from '../../styled-components/label/index.label';
 import { Input } from '../../styled-components/inputs/index.input';
 import * as B from '../../styled-components/btns/index.btn';
+import InputMask from 'react-input-mask';
 
 export function PageCpf() {
     const navigate = useNavigate();
@@ -38,10 +39,10 @@ export function PageCpf() {
     const handleDocumentNumberChange = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
-        const regex = /[^0-9]/;
+        const regex = /^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/;
         const newDocumentNumber = event.target.value;
 
-        if (regex.test(newDocumentNumber) || newDocumentNumber.length !== 11) {
+        if (!regex.test(newDocumentNumber)) {
             setDocumentNumberCheck(true);
             setDisabledBtn(true);
         } else if (documentNumberCheck || disabledBtn) {
@@ -69,15 +70,15 @@ export function PageCpf() {
                         <form onSubmit={handleSubmit}>
                             <div>
                                 <Label>CPF</Label>
-                                <Input
-                                    className={
-                                        documentNumberCheck ? 'error' : ''
-                                    }
-                                    placeholder="000.000.000-00"
-                                    required
-                                    name="documentNumber"
-                                    onChange={handleDocumentNumberChange}
-                                />
+                                <InputMask mask="999.999.999-99" onChange={handleDocumentNumberChange}>
+                                    {(inputProps) => <Input
+                                        className={
+                                            documentNumberCheck ? 'error' : ''
+                                        }
+                                        required
+                                        name="documentNumber"
+                                    />}
+                                </InputMask>         
                             </div>
 
                             {documentNumberCheck ? (

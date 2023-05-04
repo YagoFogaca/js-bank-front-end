@@ -4,6 +4,7 @@ import { Input } from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import * as TI from '../../styled-components/text-information/index.text';
 import * as TE from '../../styled-components/span/index.span';
+import InputMask from 'react-input-mask';
 
 export function PersonalInformation({
     textFullName,
@@ -48,8 +49,9 @@ export function PersonalInformation({
     const handlePhoneNumberChange = (
         event: React.ChangeEvent<HTMLInputElement>,
     ) => {
+        const regex = /^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/;
         const phoneNumber = event.currentTarget.value;
-        if (/[^0-9]/.test(phoneNumber) || phoneNumber.length < 11) {
+        if (!regex.test(phoneNumber)) {
             setPhoneNumber(true);
             setDisabledBtn({ ...disabledBtn, phoneNumber: true });
         } else {
@@ -106,16 +108,14 @@ export function PersonalInformation({
 
             <div>
                 <Label>Telefone</Label>
-                <Input
-                    placeholder="DD 9XXXX-YYYY"
-                    defaultValue={textPhoneNumber}
-                    required
-                    id="phoneNumber"
-                    type="tel"
-                    className={errorPhoneNumber ? 'error' : ''}
-                    autoComplete="off"
-                    onChange={handlePhoneNumberChange}
-                />
+                <InputMask mask="(99) 99999-9999" onChange={handlePhoneNumberChange}>
+                    {(inputProps) => <Input
+                        required
+                        type="text"
+                        className={errorPhoneNumber ? 'error' : ''}
+                    />}
+                </InputMask>
+                
                 {errorPhoneNumber ? (
                     <TE.TextError visible={errorPhoneNumber}>
                         Seu telefone é invalido!
