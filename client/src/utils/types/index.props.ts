@@ -57,3 +57,8 @@ export type PropsUseStateImg = {
     type: string;
     webkitRelativePath: string | any;
 };
+
+export type PropsReactModal = {
+    modalIsOpen: boolean;
+    setIsOpen: (data: boolean) => void;
+};

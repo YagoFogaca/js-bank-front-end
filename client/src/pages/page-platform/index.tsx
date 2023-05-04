@@ -2,8 +2,15 @@ import { VarianteMain } from '../../styled-components/main/index.main';
 import { VariantHeader } from '../../components/header/index.variant-header';
 import * as C from './index.style';
 import * as Hi from 'react-icons/hi';
+import { ReactModal } from '../../components/react-modal/index.react-modal';
+import { useState } from 'react';
 
 export function PagePlatform() {
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const openModal = () => {
+        setIsOpen(true);
+    };
+
     return (
         <VarianteMain>
             <VariantHeader />
@@ -16,18 +23,25 @@ export function PagePlatform() {
 
                     <C.DivSection>
                         <C.H4Section>Saldo</C.H4Section>
-                        <C.PSection>R${'0,00'}</C.PSection>
+                        <C.PSection>
+                            R${localStorage.getItem('balance') ?? '0,00'}
+                        </C.PSection>
                     </C.DivSection>
                 </C.CardPlatform>
 
                 <C.VariantCardPlatform>
-                    <C.BtnSection>
+                    <C.BtnSection onClick={openModal}>
                         <Hi.HiOutlineLogin
                             size={31}
                             style={{ transform: 'rotate(90deg)' }}
                         />
                         <C.PSection>Deposito</C.PSection>
                     </C.BtnSection>
+
+                    <ReactModal
+                        modalIsOpen={modalIsOpen}
+                        setIsOpen={setIsOpen}
+                    />
 
                     <C.BtnSection>
                         <Hi.HiOutlineLogout

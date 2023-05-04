@@ -70,7 +70,7 @@ export function PageCpf() {
                         <form onSubmit={handleSubmit}>
                             <div>
                                 <Label>CPF</Label>
-                                <InputMask
+                                {/* <InputMask
                                     mask="999.999.999-99"
                                     onChange={handleDocumentNumberChange}
                                 >
@@ -80,8 +80,8 @@ export function PageCpf() {
                                         }
                                         required
                                         name="documentNumber"
-                                    />} */}
-                                </InputMask>
+                                    />} 
+                                </InputMask> */}
                             </div>
 
                             {documentNumberCheck ? (
