@@ -60,7 +60,7 @@ export function WebCam({
                             color="true"
                             onClick={() => setRenderImg(false)}
                         >
-                            Retirar foto
+                            Nova foto
                         </C.VarianteButton>
                         <C.VarianteButton onClick={handleSubmit}>
                             Seguir
