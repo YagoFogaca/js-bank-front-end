@@ -83,14 +83,17 @@ export function PageLoginCpf() {
                         <form onSubmit={handleSubmit}>
                             <div>
                                 <Label>CPF</Label>
-                                <InputMask mask="999.999.999-99" onChange={handleDocumentNumberChange}>
-                                    {(inputProps) => <Input
+                                <InputMask
+                                    mask="999.999.999-99"
+                                    onChange={handleDocumentNumberChange}
+                                >
+                                    {/* {(inputProps) => <Input
                                         className={
                                             documentNumberCheck ? 'error' : ''
                                         }
                                         required
                                         name="documentNumber"
-                                    />}
+                                    />} */}
                                 </InputMask>
                                 {documentNumberCheck ? (
                                     <TE.TextError visible={documentNumberCheck}>
