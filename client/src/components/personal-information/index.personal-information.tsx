@@ -108,14 +108,14 @@ export function PersonalInformation({
 
             <div>
                 <Label>Telefone</Label>
-                <InputMask mask="(99) 99999-9999" onChange={handlePhoneNumberChange}>
+                {/* <InputMask mask="(99) 99999-9999" onChange={handlePhoneNumberChange}>
                     {(inputProps) => <Input
                         required
                         type="text"
                         className={errorPhoneNumber ? 'error' : ''}
                     />}
-                </InputMask>
-                
+                </InputMask> */}
+
                 {errorPhoneNumber ? (
                     <TE.TextError visible={errorPhoneNumber}>
                         Seu telefone é invalido!

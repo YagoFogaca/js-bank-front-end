@@ -1,18 +1,14 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
 import { PropsReactModal } from '../../utils/types/index.props';
-import { HiX } from 'react-icons/hi';
-import { DivModal } from './style.react-modal';
-import { Text } from '../../styled-components/text-information/index.text';
-import { BoxInput, Input } from '../../styled-components/inputs/index.input';
-import { Label } from '../../styled-components/label/index.label';
+import { HiOutlineBadgeCheck, HiX } from 'react-icons/hi';
+import { DivModal, PText } from './style.react-modal';
+import { FormBalance } from '../form-balance/index.form-balance';
 import * as C from '../../styled-components/btns/index.btn';
-import * as TI from '../../styled-components/text-information/index.text';
-import * as TE from '../../styled-components/span/index.span';
 
 const customStyles = {
     content: {
-        width: '40%',
+        width: '60%',
         top: '50%',
         left: '50%',
         right: 'auto',
@@ -21,39 +17,22 @@ const customStyles = {
         transform: 'translate(-50%, -50%)',
         padding: '15px',
     },
+    overlay: {
+        backgroundColor: '#000000da',
+    },
 };
 
 Modal.setAppElement('#root');
 
 export function ReactModal({ modalIsOpen, setIsOpen }: PropsReactModal) {
-    const [error, setError] = useState(false);
-
+    const [msg, setMsg] = useState(false);
     const closeModal = () => {
         setIsOpen(false);
+        setMsg(false);
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const value_deposit = parseInt(event.currentTarget.value_deposit.value);
-
-        const balance = localStorage.getItem('balance');
-
-        if (balance) {
-            const newBalance = parseInt(balance) + value_deposit;
-            localStorage.setItem('balance', newBalance.toString());
-        } else {
-            localStorage.setItem('balance', value_deposit.toString());
-        }
-
-        closeModal();
-    };
-
-    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (parseInt(event.currentTarget.value) <= 0) {
-            setError(true);
-        } else {
-            setError(false);
-        }
+    const newBalance = () => {
+        setMsg(false);
     };
 
     return (
@@ -75,34 +54,28 @@ export function ReactModal({ modalIsOpen, setIsOpen }: PropsReactModal) {
                     onClick={closeModal}
                 />
             </DivModal>
-            <form onSubmit={handleSubmit}>
-                <Text>Faça seu deposito</Text>
 
-                <BoxInput>
-                    <Label>Valor de deposito</Label>
-                    <Input
-                        className={error ? 'error' : ''}
-                        type="number"
-                        min="0"
-                        placeholder="R$0,00"
-                        required
-                        id="value_deposit"
-                        name="value_deposit"
-                        autoComplete="off"
-                        onChange={handleOnChange}
-                    />
-                    {error ? (
-                        <TE.TextError visible={error}>
-                            Valor inválido
-                        </TE.TextError>
-                    ) : (
-                        <></>
-                    )}
-                </BoxInput>
-                <C.BoxBtns>
-                    <C.Btn>Depositar</C.Btn>
-                </C.BoxBtns>
-            </form>
+            {msg ? (
+                <>
+                    <PText>
+                        Depósito realizado com sucesso
+                        <HiOutlineBadgeCheck
+                            size={31}
+                            style={{ color: 'rgb(1 151 1)' }}
+                        />
+                    </PText>
+                    <C.VarianteBoxBtns>
+                        <C.VarianteButton color="true" onClick={newBalance}>
+                            Novo depósito
+                        </C.VarianteButton>
+                        <C.VarianteButton onClick={closeModal}>
+                            Sair
+                        </C.VarianteButton>
+                    </C.VarianteBoxBtns>
+                </>
+            ) : (
+                <FormBalance setMsg={setMsg} />
+            )}
         </Modal>
     );
 }

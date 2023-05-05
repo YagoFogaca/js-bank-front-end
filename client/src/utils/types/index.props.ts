@@ -62,3 +62,7 @@ export type PropsReactModal = {
     modalIsOpen: boolean;
     setIsOpen: (data: boolean) => void;
 };
+
+export type PropsFormBalance = {
+    setMsg: (data: boolean) => void;
+};
