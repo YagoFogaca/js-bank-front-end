@@ -45,19 +45,6 @@ export const VarianteInput = styled(Input)`
     width: 98%;
 `;
 
-// Pode tirar
-export const VarianteInput2 = styled.input`
-    width: 100%;
-    padding: 10px 0px;
-    font-size: 17px;
-    color: #000;
-    margin-bottom: 15px;
-    border: none;
-    border-bottom: 1px solid #000;
-    outline: none;
-    background: transparent;
-`;
-
 export const StyledNumberFormat = styled(InputMask)`
     width: 100%;
     font-size: 17px;
