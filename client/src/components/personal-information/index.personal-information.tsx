@@ -113,6 +113,7 @@ export function PersonalInformation({
                 <StyledNumberFormat
                     mask="(99) 99999-9999"
                     onChange={handlePhoneNumberChange}
+                    placeholder="(99) 99999-9999"
                     required
                     type="text"
                     className={errorPhoneNumber ? 'error' : ''}

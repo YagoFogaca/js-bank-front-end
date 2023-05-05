@@ -70,9 +70,11 @@ export function PageCpf() {
                             <div>
                                 <Label>CPF</Label>
                                 <StyledNumberFormat
+                                    placeholder="000.000.000-00"
                                     className={
                                         documentNumberCheck ? 'error' : ''
                                     }
+                                    required
                                     name="documentNumber"
                                     mask="999.999.999-99"
                                     onChange={handleDocumentNumberChange}
