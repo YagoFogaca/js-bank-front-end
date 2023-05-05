@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { PropsInformation } from '../../utils/types/index.props';
-import { Input } from '../../styled-components/inputs/index.input';
+import {
+    Input,
+    StyledNumberFormat,
+} from '../../styled-components/inputs/index.input';
 import { Label } from '../../styled-components/label/index.label';
 import * as TI from '../../styled-components/text-information/index.text';
 import * as TE from '../../styled-components/span/index.span';
-import InputMask from 'react-input-mask';
 
 export function PersonalInformation({
     textFullName,
     textBirthDate,
-    textPhoneNumber,
     disabledBtn,
     setDisabledBtn,
 }: PropsInformation) {
@@ -108,13 +109,15 @@ export function PersonalInformation({
 
             <div>
                 <Label>Telefone</Label>
-                {/* <InputMask mask="(99) 99999-9999" onChange={handlePhoneNumberChange}>
-                    {(inputProps) => <Input
-                        required
-                        type="text"
-                        className={errorPhoneNumber ? 'error' : ''}
-                    />}
-                </InputMask> */}
+
+                <StyledNumberFormat
+                    mask="(99) 99999-9999"
+                    onChange={handlePhoneNumberChange}
+                    required
+                    type="text"
+                    className={errorPhoneNumber ? 'error' : ''}
+                    name="phoneNumber"
+                />
 
                 {errorPhoneNumber ? (
                     <TE.TextError visible={errorPhoneNumber}>

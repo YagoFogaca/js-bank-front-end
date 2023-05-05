@@ -7,9 +7,8 @@ import { Loading } from '../../components/loading/index.loading';
 import * as TI from '../../styled-components/text-information/index.text';
 import * as TE from '../../styled-components/span/index.span';
 import { Label } from '../../styled-components/label/index.label';
-import { Input } from '../../styled-components/inputs/index.input';
+import { StyledNumberFormat } from '../../styled-components/inputs/index.input';
 import * as B from '../../styled-components/btns/index.btn';
-import InputMask from 'react-input-mask';
 
 export function PageCpf() {
     const navigate = useNavigate();
@@ -70,18 +69,24 @@ export function PageCpf() {
                         <form onSubmit={handleSubmit}>
                             <div>
                                 <Label>CPF</Label>
-                                {/* <InputMask
+                                <StyledNumberFormat
+                                    className={
+                                        documentNumberCheck ? 'error' : ''
+                                    }
+                                    name="documentNumber"
                                     mask="999.999.999-99"
                                     onChange={handleDocumentNumberChange}
-                                >
-                                    {/* {(inputProps) => <Input
-                                        className={
-                                            documentNumberCheck ? 'error' : ''
-                                        }
-                                        required
-                                        name="documentNumber"
-                                    />} 
-                                </InputMask> */}
+                                />
+
+                                {/* <Input
+                                    className={
+                                        documentNumberCheck ? 'error' : ''
+                                    }
+                                    placeholder="000.000.000-00"
+                                    required
+                                    name="documentNumber"
+                                    onChange={handleDocumentNumberChange}
+                                /> */}
                             </div>
 
                             {documentNumberCheck ? (
